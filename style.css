@@ -1,0 +1,191 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #111;
+}
+
+/* Header Styles */
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    /* Dark gradient at top for text legibility */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+}
+
+.header-container {
+    display: flex;
+    align-items: stretch; /* Allows hamburger menu to stretch full height */
+    justify-content: space-between;
+}
+
+/* Logo Section */
+.logo-section {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/* Constraining the logo image */
+.logo-img {
+    height: 55px; /* Adjust based on the actual logo image */
+    width: auto;
+    object-fit: contain;
+    /* Adding a filter to make the logo white if it is black, but user provided it so we assume it's fine */
+}
+
+/* Navigation Section */
+.nav-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 30px;
+}
+
+/* Top Nav (Small Links) */
+.top-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    padding-top: 10px;
+}
+
+.top-nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    transition: color 0.2s ease;
+}
+
+.top-nav a:hover {
+    color: #ffffff;
+}
+
+.top-nav .divider {
+    color: #777;
+    font-size: 12px;
+}
+
+.lang-switch, .search-icon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Main Nav (Large Links) */
+.main-nav {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 15px;
+    padding-left: 40px; /* Space between logo and nav links */
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-list a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: capitalize;
+    transition: opacity 0.2s ease;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+.nav-list a:hover {
+    opacity: 0.8;
+}
+
+/* Hamburger Menu Toggle */
+.menu-toggle {
+    width: 80px;
+    /* Purple gradient background */
+    background: linear-gradient(135deg, #7c3aed, #4c1d95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: linear-gradient(135deg, #6d28d9, #3b0764);
+}
+
+.menu-toggle i {
+    color: #ffffff;
+    font-size: 28px;
+}
+
+/* Hero Section (For Context) */
+.hero {
+    height: 100vh;
+    /* Placeholder university campus background */
+    background: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 80px;
+    padding-left: 80px;
+    position: relative;
+}
+
+/* Dark overlay for hero */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.15); /* Slight dark overlay */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 90px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .nav-list { gap: 20px; }
+    .nav-list a { font-size: 16px; }
+    .hero-content h1 { font-size: 70px; }
+}
+
+@media (max-width: 992px) {
+    .nav-section { display: none; } /* Hide normal nav on smaller screens */
+    .logo-img { height: 45px; }
+    .menu-toggle { width: 60px; }
+    .hero { padding-left: 30px; padding-bottom: 50px; }
+}
