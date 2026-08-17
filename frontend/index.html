@@ -42,6 +42,8 @@
                         <li><a href="#">Research</a></li>
                         <li><a href="#">News</a></li>
                         <li><a href="#">Campus</a></li>
+                        <li><a href="#" id="openAdminBtn" style="color: #ffb703;">Admin</a></li>
+                        <li><a href="#" id="openRegisterBtn" class="register-btn">Register Now</a></li>
                     </ul>
                 </nav>
             </div>
@@ -61,5 +63,68 @@
         </div>
     </section>
 
+    <!-- Glassmorphism Registration Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="glass-modal">
+            <span class="close-btn" id="closeRegisterBtn">&times;</span>
+            <h2>Naval Competition Registration</h2>
+            <form id="registrationForm" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" required placeholder="Enter your white color Name">
+                </div>
+                <div class="input-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" required placeholder="Enter your phone number">
+                </div>
+                <div class="input-group">
+                    <label>School / University Name</label>
+                    <input type="text" name="university" required placeholder="University name">
+                </div>
+                <div class="input-group">
+                    <label>Location in Detail</label>
+                    <textarea name="location" rows="3" required placeholder="Detailed location"></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Last Year Percentage (%)</label>
+                    <input type="number" name="percentage" min="0" max="100" required placeholder="e.g. 85">
+                </div>
+                <div class="input-group">
+                    <label>School Logo (Optional)</label>
+                    <input type="file" name="logo" accept="image/*">
+                </div>
+                <button type="submit" class="submit-btn">Submit Registration</button>
+            </form>
+            <div id="registerSuccessMsg" style="display:none; color: #4ade80; margin-top: 15px; font-weight: bold; text-align: center;">Registration Successful!</div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div class="modal-overlay" id="adminModal">
+        <div class="glass-modal admin-modal-content">
+            <span class="close-btn" id="closeAdminBtn">&times;</span>
+            <h2>Admin Dashboard - Participants</h2>
+            <div class="table-container">
+                <table id="participantsTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>University</th>
+                            <th>Location</th>
+                            <th>Percentage</th>
+                            <th>Logo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Participants will be loaded here via JS -->
+                    </tbody>
+                </table>
+            </div>
+            <button class="submit-btn" id="refreshAdminBtn" style="margin-top: 20px;">Refresh Data</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
