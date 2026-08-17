@@ -23,8 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     openAdminBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        adminModal.style.display = 'flex';
-        fetchParticipants(); // Load data when opening
+        const password = prompt('Please enter the Admin Password:');
+        if (password === 'nur138nur') {
+            adminModal.style.display = 'flex';
+            fetchParticipants(); // Load data when opening
+        } else if (password !== null) {
+            alert('Incorrect password! Access denied.');
+        }
     });
 
     closeRegisterBtn.addEventListener('click', () => {
