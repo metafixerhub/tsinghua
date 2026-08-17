@@ -19,6 +19,12 @@ body {
     z-index: 100;
     /* Dark gradient at top for text legibility */
     background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    animation: slideDown 1s ease-out forwards;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .header-container {
@@ -41,7 +47,11 @@ body {
     height: 55px; /* Adjust based on the actual logo image */
     width: auto;
     object-fit: contain;
-    /* Adding a filter to make the logo white if it is black, but user provided it so we assume it's fine */
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.1) rotate(-5deg);
 }
 
 /* Navigation Section */
@@ -105,12 +115,29 @@ body {
     font-size: 18px;
     font-weight: 700;
     text-transform: capitalize;
-    transition: opacity 0.2s ease;
+    transition: all 0.3s ease;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    position: relative;
+}
+
+.nav-list a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.nav-list a:hover::after {
+    width: 100%;
 }
 
 .nav-list a:hover {
-    opacity: 0.8;
+    opacity: 1;
+    transform: translateY(-2px);
 }
 
 /* Hamburger Menu Toggle */
@@ -122,16 +149,22 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .menu-toggle:hover {
     background: linear-gradient(135deg, #6d28d9, #3b0764);
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+}
+
+.menu-toggle:hover i {
+    transform: rotate(180deg) scale(1.2);
 }
 
 .menu-toggle i {
     color: #ffffff;
     font-size: 28px;
+    transition: transform 0.5s ease;
 }
 
 /* Hero Section (For Context) */
@@ -144,6 +177,12 @@ body {
     padding-bottom: 80px;
     padding-left: 80px;
     position: relative;
+    animation: fadeIn 1.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Dark overlay for hero */
@@ -160,6 +199,14 @@ body {
     z-index: 2;
     color: #ffffff;
     max-width: 800px;
+    animation: slideUp 1s ease-out 0.5s forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .hero-content h1 {

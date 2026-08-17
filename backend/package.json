@@ -1,0 +1,12 @@
+{
+  "name": "tsinghua-backend",
+  "version": "1.0.0",
+  "description": "Backend to serve the frontend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
