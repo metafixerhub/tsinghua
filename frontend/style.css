@@ -493,3 +493,45 @@ table td img {
     .menu-toggle { width: 60px; }
     .hero { padding-left: 30px; padding-bottom: 50px; }
 }
+
+@media (max-width: 768px) {
+    /* Stack input rows vertically on mobile */
+    .input-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    /* Make the glass modal use more screen space */
+    .glass-modal {
+        padding: 20px;
+        max-width: 95vw;
+        border-radius: 15px;
+    }
+    
+    .form-scroll-container {
+        max-height: 75vh;
+        padding-right: 5px;
+    }
+    
+    .glass-modal h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .input-group label {
+        font-size: 13px;
+    }
+    
+    .input-group input, 
+    .input-group textarea,
+    select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .close-btn {
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+    }
+}
