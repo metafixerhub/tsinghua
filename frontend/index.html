@@ -67,35 +67,122 @@
     <div class="modal-overlay" id="registerModal">
         <div class="glass-modal">
             <span class="close-btn" id="closeRegisterBtn">&times;</span>
-            <h2>Naval Competition Registration</h2>
-            <form id="registrationForm" enctype="multipart/form-data">
-                <div class="input-group">
-                    <label>Full Name</label>
-                    <input type="text" name="name" required placeholder="Enter your white color Name">
-                </div>
-                <div class="input-group">
-                    <label>Phone Number</label>
-                    <input type="tel" name="phone" required placeholder="Enter your phone number">
-                </div>
-                <div class="input-group">
-                    <label>School / University Name</label>
-                    <input type="text" name="university" required placeholder="University name">
-                </div>
-                <div class="input-group">
-                    <label>Location in Detail</label>
-                    <textarea name="location" rows="3" required placeholder="Detailed location"></textarea>
-                </div>
-                <div class="input-group">
-                    <label>Last Year Percentage (%)</label>
-                    <input type="number" name="percentage" min="0" max="100" required placeholder="e.g. 85">
-                </div>
-                <div class="input-group">
-                    <label>School Logo (Optional)</label>
-                    <input type="file" name="logo" accept="image/*">
-                </div>
-                <button type="submit" class="submit-btn">Submit Registration</button>
-            </form>
-            <div id="registerSuccessMsg" style="display:none; color: #4ade80; margin-top: 15px; font-weight: bold; text-align: center;">Registration Successful!</div>
+            <h2>International-Level Competition – Level 1</h2>
+            <div class="form-scroll-container">
+                <form id="registrationForm" enctype="multipart/form-data">
+                    <p class="form-intro">If you are interested in participating, please fill in the following information:</p>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>1. Full Name</label>
+                            <input type="text" name="name" required placeholder="Enter your full name">
+                        </div>
+                        <div class="input-group">
+                            <label>2. Age</label>
+                            <input type="number" name="age" required placeholder="e.g. 15">
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>3. Class / Grade</label>
+                            <input type="text" name="classGrade" required placeholder="e.g. 10th Grade">
+                        </div>
+                        <div class="input-group">
+                            <label>4. School / College / Organization</label>
+                            <input type="text" name="school" required placeholder="Institution name">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>5. Full Address</label>
+                        <textarea name="address" rows="2" required placeholder="Your full address"></textarea>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>6. City & State</label>
+                            <input type="text" name="cityState" required placeholder="e.g. New York, NY">
+                        </div>
+                        <div class="input-group">
+                            <label>7. Country</label>
+                            <input type="text" name="country" required placeholder="Country">
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>8. Phone / WhatsApp Number</label>
+                            <input type="tel" name="phone" required placeholder="Phone number">
+                        </div>
+                        <div class="input-group">
+                            <label>9. Email Address</label>
+                            <input type="email" name="email" required placeholder="Email address">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>10. Which field are you interested in?</label>
+                        <select name="fieldOfInterest" required>
+                            <option value="">Select a field...</option>
+                            <option value="Artificial Intelligence">🤖 Artificial Intelligence</option>
+                            <option value="Coding / Software Development">💻 Coding / Software Development</option>
+                            <option value="Robotics">🦾 Robotics</option>
+                            <option value="Technology">🌐 Technology</option>
+                            <option value="Creative Design">🎨 Creative Design</option>
+                            <option value="Science / Innovation">🔬 Science / Innovation</option>
+                            <option value="Other">🧠 Other</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group radio-group">
+                        <label>11. Do you have experience using AI or coding tools?</label>
+                        <label><input type="radio" name="experience" value="Yes" required> Yes</label>
+                        <label><input type="radio" name="experience" value="No"> No</label>
+                    </div>
+
+                    <div class="input-group">
+                        <label>12. What type of project would you like to build?</label>
+                        <textarea name="projectType" rows="2" required placeholder="Describe your project idea..."></textarea>
+                    </div>
+
+                    <hr class="form-divider">
+
+                    <div class="input-group radio-group">
+                        <label>13. Are you comfortable using AI tools or other software during the competition?</label>
+                        <label><input type="radio" name="comfortableAI" value="Yes" required> Yes</label>
+                        <label><input type="radio" name="comfortableAI" value="No"> No</label>
+                    </div>
+
+                    <div class="input-group radio-group">
+                        <label>14. Are you interested in the on-the-spot challenge?</label>
+                        <label><input type="radio" name="onTheSpot" value="Yes" required> Yes</label>
+                        <label><input type="radio" name="onTheSpot" value="No"> No</label>
+                    </div>
+
+                    <div class="input-group">
+                        <label>15. Why do you want to participate?</label>
+                        <textarea name="whyParticipate" rows="2" required placeholder="Your motivation..."></textarea>
+                    </div>
+
+                    <hr class="form-divider">
+
+                    <div class="input-group radio-group">
+                        <label>16. Do you agree to prepare and submit the required project/report according to the competition guidelines?</label>
+                        <label><input type="radio" name="agreement" value="Yes" required> Yes</label>
+                        <label><input type="radio" name="agreement" value="No"> No</label>
+                    </div>
+
+                    <div class="input-group">
+                        <label>School Logo (Optional)</label>
+                        <input type="file" name="logo" accept="image/*">
+                    </div>
+
+                    <p class="form-footer">✨ Please fill in the information carefully. Your responses will help us understand your interests and prepare the appropriate competition materials and worksheet for you.</p>
+                    <button type="submit" class="submit-btn">Ready to unlock your tech genius? 🚀</button>
+                </form>
+                <div id="registerSuccessMsg" style="display:none; color: #4ade80; margin-top: 15px; font-weight: bold; text-align: center;">Registration Successful!</div>
+            </div>
         </div>
     </div>
 
@@ -108,12 +195,23 @@
                 <table id="participantsTable">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>University</th>
-                            <th>Location</th>
-                            <th>Percentage</th>
                             <th>Logo</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Grade</th>
+                            <th>School</th>
+                            <th>Address</th>
+                            <th>City & State</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Country</th>
+                            <th>Field</th>
+                            <th>Exp?</th>
+                            <th>Project</th>
+                            <th>Comf AI?</th>
+                            <th>Spot Ch?</th>
+                            <th>Why</th>
+                            <th>Agreed?</th>
                         </tr>
                     </thead>
                     <tbody>

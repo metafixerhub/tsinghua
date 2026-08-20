@@ -41,15 +41,30 @@ const participants = [];
 // API Endpoint to register a participant
 app.post('/api/register', upload.single('logo'), (req, res) => {
     try {
-        const { name, university, location, percentage, phone } = req.body;
+        const { 
+            name, age, classGrade, school, address, cityState, 
+            phone, email, country, fieldOfInterest, experience, 
+            projectType, comfortableAI, onTheSpot, whyParticipate, agreement 
+        } = req.body;
         
         const participant = {
             id: Date.now().toString(),
             name,
-            university,
-            location,
-            percentage,
+            age,
+            classGrade,
+            school,
+            address,
+            cityState,
             phone,
+            email,
+            country,
+            fieldOfInterest,
+            experience,
+            projectType,
+            comfortableAI,
+            onTheSpot,
+            whyParticipate,
+            agreement,
             logoUrl: req.file ? `/uploads/${req.file.filename}` : null,
             registrationDate: new Date().toISOString()
         };

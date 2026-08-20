@@ -223,15 +223,89 @@ body {
     text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
 }
 
-/* Modal Overlay & Neon City Background */
+/* Form Scroll Container for large forms */
+.form-scroll-container {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+.form-scroll-container::-webkit-scrollbar {
+    width: 6px;
+}
+.form-scroll-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+}
+
+.form-intro {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.input-row {
+    display: flex;
+    gap: 15px;
+}
+.input-row .input-group {
+    flex: 1;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.radio-group label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+.radio-group input[type="radio"] {
+    width: auto;
+    cursor: pointer;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.5); /* dark bg for select dropdown visibility */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+}
+select option {
+    background: #111;
+    color: #fff;
+}
+
+.form-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 25px 0;
+}
+
+.form-footer {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 20px 0;
+    line-height: 1.4;
+}
+
+/* Modal Overlay & Tech Background */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Neon City Background Image Placeholder */
-    background: url('https://images.unsplash.com/photo-1555580399-53b08e50bcbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    /* Blue Tech Cityscape Background Image Placeholder */
+    background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
     z-index: 1000;
     display: none; /* Hidden by default */
     align-items: center;
@@ -240,12 +314,12 @@ body {
     animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Dark overlay on top of the neon city to make the form pop */
+/* Dark overlay on top of the tech city to make the form pop */
 .modal-overlay::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 20, 50, 0.6); /* Blue tint overlay */
     z-index: 0;
 }
 
@@ -258,15 +332,16 @@ body {
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
-    padding: 40px;
+    padding: 30px 40px;
     width: 100%;
-    max-width: 500px;
+    max-width: 650px; /* Wider for 2 columns */
     color: #ffffff;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 }
 
 .admin-modal-content {
-    max-width: 900px; /* Wider for the table */
+    max-width: 95vw; /* Much Wider for the 16 column table */
+    max-height: 90vh;
 }
 
 .close-btn {
@@ -277,6 +352,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: color 0.3s ease;
+    z-index: 10;
 }
 
 .close-btn:hover {

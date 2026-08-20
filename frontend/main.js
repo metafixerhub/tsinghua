@@ -120,12 +120,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 : '<span style="color:rgba(255,255,255,0.5)">No Logo</span>';
 
             tr.innerHTML = `
-                <td>${p.name}</td>
-                <td>${p.phone}</td>
-                <td>${p.university}</td>
-                <td>${p.location}</td>
-                <td>${p.percentage}%</td>
                 <td>${logoHtml}</td>
+                <td>${p.name || ''}</td>
+                <td>${p.age || ''}</td>
+                <td>${p.classGrade || ''}</td>
+                <td>${p.school || ''}</td>
+                <td>${p.address || ''}</td>
+                <td>${p.cityState || ''}</td>
+                <td>${p.phone || ''}</td>
+                <td>${p.email || ''}</td>
+                <td>${p.country || ''}</td>
+                <td>${p.fieldOfInterest || ''}</td>
+                <td>${p.experience || ''}</td>
+                <td>${p.projectType || ''}</td>
+                <td>${p.comfortableAI || ''}</td>
+                <td>${p.onTheSpot || ''}</td>
+                <td>${p.whyParticipate || ''}</td>
+                <td>${p.agreement || ''}</td>
             `;
             participantsTableBody.appendChild(tr);
         });
