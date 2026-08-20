@@ -118,6 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 ? `<img src="${p.logoUrl}" alt="Logo">` 
                 : '<span style="color:rgba(255,255,255,0.5)">No Logo</span>';
 
+            // Create Delete Button
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.onclick = () => deleteParticipant(p._id || p.id);
+
             tr.innerHTML = `
                 <td>${logoHtml}</td>
                 <td>${p.name || ''}</td>
@@ -136,9 +142,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${p.onTheSpot || ''}</td>
                 <td>${p.whyParticipate || ''}</td>
                 <td>${p.agreement || ''}</td>
+                <td class="action-cell"></td>
             `;
+            // Append the button properly to avoid innerHTML breaking listeners
+            tr.querySelector('.action-cell').appendChild(deleteBtn);
+            
             participantsTableBody.appendChild(tr);
         });
+    };
+
+    const deleteParticipant = async (id) => {
+        if (!confirm('Are you sure you want to delete this participant?')) return;
+        
+        try {
+            const response = await fetch('https://tsinghua-1.onrender.com/api/participants/' + id, {
+                method: 'DELETE'
+            });
+            
+            if (response.ok) {
+                alert('Participant deleted!');
+                fetchParticipants(); // Reload table
+            } else {
+                alert('Failed to delete participant.');
+            }
+        } catch (error) {
+            console.error('Error deleting:', error);
+            alert('An error occurred while deleting.');
+        }
     };
 
     refreshAdminBtn.addEventListener('click', fetchParticipants);

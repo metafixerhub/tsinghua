@@ -105,6 +105,17 @@ app.get('/api/participants', async (req, res) => {
     }
 });
 
+// API Endpoint to delete a participant
+app.delete('/api/participants/:id', async (req, res) => {
+    try {
+        await Participant.findByIdAndDelete(req.params.id);
+        res.json({ message: 'Participant deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting participant:', error);
+        res.status(500).json({ message: 'Error deleting participant' });
+    }
+});
+
 // Route for serving the main HTML file
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));

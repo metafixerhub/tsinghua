@@ -465,7 +465,22 @@ table td img {
     border-radius: 4px;
 }
 
-/* Responsive adjustments */
+.delete-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.3s;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
+}
+
+/* Form Scroll Container for large forms */
 @media (max-width: 1200px) {
     .nav-list { gap: 20px; }
     .nav-list a { font-size: 16px; }
