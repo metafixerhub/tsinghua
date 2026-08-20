@@ -60,11 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData(registrationForm);
         
         try {
-            // The backend is running on the same domain or localhost:3000
-            // Since the backend serves the frontend, we can just use /api/register
-            const response = await fetch('/api/register', {
+            // Send data to the new live Render backend URL
+            const response = await fetch('https://tsinghua-1.onrender.com/api/register', {
                 method: 'POST',
-                body: formData // Note: fetch automatically sets the correct Content-Type for FormData
+                body: formData 
             });
 
             if (response.ok) {
@@ -90,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Admin Fetch Logic ---
     const fetchParticipants = async () => {
         try {
-            const response = await fetch('/api/participants');
+            const response = await fetch('https://tsinghua-1.onrender.com/api/participants');
             if (response.ok) {
                 const participants = await response.json();
                 renderParticipants(participants);
