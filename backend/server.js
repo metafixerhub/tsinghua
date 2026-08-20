@@ -3,9 +3,16 @@ const path = require('path');
 const cors = require('cors');
 const multer = require('multer');
 const fs = require('fs');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log('Successfully connected to MongoDB Atlas!'))
+    .catch((error) => console.error('MongoDB connection error:', error));
 
 // Setup Middleware
 app.use(cors());
@@ -35,11 +42,32 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// In-memory database for participants
-const participants = [];
+// Mongoose Schema for Participant
+const participantSchema = new mongoose.Schema({
+    name: String,
+    age: Number,
+    classGrade: String,
+    school: String,
+    address: String,
+    cityState: String,
+    phone: String,
+    email: String,
+    country: String,
+    fieldOfInterest: String,
+    experience: String,
+    projectType: String,
+    comfortableAI: String,
+    onTheSpot: String,
+    whyParticipate: String,
+    agreement: String,
+    logoUrl: String,
+    registrationDate: { type: Date, default: Date.now }
+});
+
+const Participant = mongoose.model('Participant', participantSchema);
 
 // API Endpoint to register a participant
-app.post('/api/register', upload.single('logo'), (req, res) => {
+app.post('/api/register', upload.single('logo'), async (req, res) => {
     try {
         const { 
             name, age, classGrade, school, address, cityState, 
@@ -47,32 +75,18 @@ app.post('/api/register', upload.single('logo'), (req, res) => {
             projectType, comfortableAI, onTheSpot, whyParticipate, agreement 
         } = req.body;
         
-        const participant = {
-            id: Date.now().toString(),
-            name,
-            age,
-            classGrade,
-            school,
-            address,
-            cityState,
-            phone,
-            email,
-            country,
-            fieldOfInterest,
-            experience,
-            projectType,
-            comfortableAI,
-            onTheSpot,
-            whyParticipate,
-            agreement,
-            logoUrl: req.file ? `/uploads/${req.file.filename}` : null,
-            registrationDate: new Date().toISOString()
+        const participantData = {
+            name, age, classGrade, school, address, cityState, 
+            phone, email, country, fieldOfInterest, experience, 
+            projectType, comfortableAI, onTheSpot, whyParticipate, agreement,
+            logoUrl: req.file ? `/uploads/${req.file.filename}` : null
         };
 
-        participants.push(participant);
-        console.log('New participant registered:', participant.name);
+        const newParticipant = new Participant(participantData);
+        await newParticipant.save();
         
-        res.status(201).json({ message: 'Registration successful!', participant });
+        console.log('New participant registered to MongoDB:', newParticipant.name);
+        res.status(201).json({ message: 'Registration successful!', participant: newParticipant });
     } catch (error) {
         console.error('Registration error:', error);
         res.status(500).json({ message: 'Internal server error during registration.' });
@@ -80,8 +94,15 @@ app.post('/api/register', upload.single('logo'), (req, res) => {
 });
 
 // API Endpoint to get all participants for the Admin view
-app.get('/api/participants', (req, res) => {
-    res.json(participants);
+app.get('/api/participants', async (req, res) => {
+    try {
+        // Fetch all participants from MongoDB, sorted by newest first
+        const participants = await Participant.find().sort({ registrationDate: -1 });
+        res.json(participants);
+    } catch (error) {
+        console.error('Error fetching participants:', error);
+        res.status(500).json({ message: 'Error fetching participants' });
+    }
 });
 
 // Route for serving the main HTML file
