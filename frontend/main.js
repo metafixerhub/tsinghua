@@ -15,6 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const participantsTableBody = document.querySelector('#participantsTable tbody');
     const refreshAdminBtn = document.getElementById('refreshAdminBtn');
 
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navSection = document.querySelector('.nav-section');
+
+    // --- Mobile Menu Logic ---
+    if (menuToggle && navSection) {
+        menuToggle.addEventListener('click', () => {
+            navSection.classList.toggle('active');
+        });
+    }
+
     // --- Modal Logic ---
     openRegisterBtn.addEventListener('click', (e) => {
         e.preventDefault();

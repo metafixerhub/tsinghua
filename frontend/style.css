@@ -488,9 +488,32 @@ table td img {
 }
 
 @media (max-width: 992px) {
-    .nav-section { display: none; } /* Hide normal nav on smaller screens */
+    .nav-section { 
+        display: none; 
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 20, 50, 0.95);
+        padding: 20px;
+        flex-direction: column;
+        z-index: 999;
+    } 
+    .nav-section.active {
+        display: flex;
+    }
+    .top-nav {
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
     .logo-img { height: 45px; }
-    .menu-toggle { width: 60px; }
+    .menu-toggle { width: 60px; display: block; cursor: pointer; color: white; font-size: 24px; text-align: center; }
     .hero { padding-left: 30px; padding-bottom: 50px; }
 }
 
