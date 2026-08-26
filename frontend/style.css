@@ -662,4 +662,22 @@ table td img {
     .hero-content h1 {
         font-size: 36px;
     }
+
+    .input-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .top-nav {
+        display: none; /* Hide top nav on small screens */
+    }
+
+    .nav-list {
+        display: none; /* In a real app this would toggle */
+    }
+
+    .glass-modal {
+        padding: 20px;
+        width: 95%;
+    }
 }
