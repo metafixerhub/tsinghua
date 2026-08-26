@@ -25,12 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Modal Logic ---
+    // --- Navigation Logic ---
     openRegisterBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        registerModal.style.display = 'flex';
+        document.getElementById('registerSection').scrollIntoView({ behavior: 'smooth' });
+        // Close mobile nav if open
+        if (navSection.classList.contains('active')) {
+            navSection.classList.remove('active');
+        }
     });
 
+    // --- Admin Modal Logic ---
     openAdminBtn.addEventListener('click', (e) => {
         e.preventDefault();
         const password = prompt('Please enter the Admin Password:');
@@ -78,15 +83,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Success:', data);
-                registrationForm.reset();
-                registerSuccessMsg.style.display = 'block';
+                const unionId = data.participant.unionId;
                 
-                // Hide success message after 3 seconds
-                setTimeout(() => {
-                    registerSuccessMsg.style.display = 'none';
-                    registerModal.style.display = 'none';
-                }, 3000);
+                registrationForm.reset();
+                
+                // Show Success Popup
+                document.getElementById('displayUnionId').textContent = unionId;
+                document.getElementById('displayPassword').textContent = unionId;
+                document.getElementById('successModal').style.display = 'flex';
+                
             } else {
                 alert('Registration failed. Please try again.');
             }
@@ -136,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             tr.innerHTML = `
                 <td>${logoHtml}</td>
+                <td style="font-weight:bold; color:#f28500;">${p.unionId || 'N/A'}</td>
                 <td>${p.name || ''}</td>
                 <td>${p.age || ''}</td>
                 <td>${p.classGrade || ''}</td>
@@ -176,4 +182,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     refreshAdminBtn.addEventListener('click', fetchParticipants);
+    
+    // --- Success Modal Close Logic ---
+    const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+    const goToDashboardBtn = document.getElementById('goToDashboardBtn');
+    
+    closeSuccessBtn.addEventListener('click', () => {
+        document.getElementById('successModal').style.display = 'none';
+    });
+    
+    goToDashboardBtn.addEventListener('click', () => {
+        alert("The Student Dashboard is coming soon!");
+        document.getElementById('successModal').style.display = 'none';
+    });
 });

@@ -63,7 +63,124 @@ body {
     padding-right: 30px;
 }
 
-/* Top Nav (Small Links) */
+/* ===== SPLIT SCREEN HERO & NEW THEME ===== */
+.hero {
+    min-height: 100vh;
+    padding: 100px 5% 50px;
+    background: linear-gradient(135deg, #011535 0%, #000000 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(242,133,0,0.15) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.hero-split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 40px;
+    z-index: 1;
+}
+
+.hero-content {
+    flex: 1;
+    color: white;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 55px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.highlight-orange {
+    color: #f28500;
+}
+
+.hero-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #cbd5e1;
+}
+
+/* ===== NEW FORM STYLING ===== */
+.hero-form-container {
+    flex: 1;
+    max-width: 550px;
+}
+
+.glass-form-box {
+    background: rgba(10, 17, 40, 0.85);
+    border: 1px solid #f28500;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.glass-form-box h2 {
+    color: white;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+.glass-form-box label {
+    color: #e2e8f0;
+    font-size: 13px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.glass-form-box input, 
+.glass-form-box select, 
+.glass-form-box textarea {
+    background: #020817;
+    border: 1px solid #1e293b;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.glass-form-box input:focus, 
+.glass-form-box select:focus, 
+.glass-form-box textarea:focus {
+    border-color: #f28500;
+    outline: none;
+}
+
+.submit-btn {
+    background: #f28500;
+    color: white;
+    font-weight: bold;
+    padding: 14px;
+    border-radius: 6px;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background: #d97700;
+}
+
 .top-nav {
     display: flex;
     justify-content: flex-end;
@@ -167,62 +284,6 @@ body {
     transition: transform 0.5s ease;
 }
 
-/* Hero Section (For Context) */
-.hero {
-    height: 100vh;
-    /* Placeholder university campus background */
-    background: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-    display: flex;
-    align-items: flex-end;
-    padding-bottom: 80px;
-    padding-left: 80px;
-    position: relative;
-    animation: fadeIn 1.5s ease-in forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Dark overlay for hero */
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.15); /* Slight dark overlay */
-    z-index: 1;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    color: #ffffff;
-    max-width: 800px;
-    animation: slideUp 1s ease-out 0.5s forwards;
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.hero-content h1 {
-    font-size: 90px;
-    font-weight: 800;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-}
-
-.hero-content p {
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.5;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
-}
-
 /* Form Scroll Container for large forms */
 .form-scroll-container {
     max-height: 70vh;
@@ -234,13 +295,6 @@ body {
 }
 .form-scroll-container::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.4);
-    border-radius: 10px;
-}
-
-.form-intro {
-    font-size: 14px;
-    margin-bottom: 20px;
-    color: rgba(255, 255, 255, 0.9);
 }
 
 .input-row {
@@ -372,6 +426,8 @@ select option {
 .input-group {
     margin-bottom: 15px;
 }
+
+/* Remove old modal form styles that clash */
 
 .input-group label {
     display: block;
@@ -556,5 +612,54 @@ table td img {
         top: 10px;
         right: 15px;
         font-size: 24px;
+    }
+}
+
+/* ===== SUCCESS MODAL ===== */
+.success-modal {
+    text-align: center;
+    max-width: 450px;
+    padding: 40px;
+}
+
+.success-icon {
+    font-size: 60px;
+    color: #4ade80;
+    margin-bottom: 20px;
+}
+
+.credentials-box {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #f28500;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 25px 0;
+    text-align: left;
+}
+
+.credentials-box p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.credentials-box small {
+    display: block;
+    margin-top: 15px;
+    color: #cbd5e1;
+    font-style: italic;
+}
+
+.dashboard-btn {
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .hero-split {
+        flex-direction: column;
+        padding-top: 20px;
+    }
+    
+    .hero-content h1 {
+        font-size: 36px;
     }
 }

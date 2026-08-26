@@ -55,6 +55,7 @@ const participantSchema = new mongoose.Schema({
     country: String,
     fieldOfInterest: String,
     logoUrl: String,
+    unionId: String,
     registrationDate: { type: Date, default: Date.now }
 });
 
@@ -68,16 +69,20 @@ app.post('/api/register', upload.single('logo'), async (req, res) => {
             phone, email, country, fieldOfInterest
         } = req.body;
         
+        // Generate 5-digit Union ID
+        const unionId = Math.floor(10000 + Math.random() * 90000).toString();
+        
         const participantData = {
             name, age, classGrade, school, address, cityState, 
             phone, email, country, fieldOfInterest,
-            logoUrl: req.file ? `/uploads/${req.file.filename}` : null
+            logoUrl: req.file ? `/uploads/${req.file.filename}` : null,
+            unionId: unionId
         };
 
         const newParticipant = new Participant(participantData);
         await newParticipant.save();
         
-        console.log('New participant registered to MongoDB:', newParticipant.name);
+        console.log('New participant registered to MongoDB:', newParticipant.name, 'ID:', unionId);
         res.status(201).json({ message: 'Registration successful!', participant: newParticipant });
     } catch (error) {
         console.error('Registration error:', error);
