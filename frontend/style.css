@@ -378,15 +378,12 @@ select option {
 .glass-modal {
     position: relative;
     z-index: 1;
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: #ffffff; /* Solid White for clarity */
     border-radius: 20px;
     padding: 30px 40px;
     width: 100%;
     max-width: 650px; /* Wider for 2 columns */
-    color: #ffffff;
+    color: #333333;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 }
 
@@ -416,7 +413,6 @@ select option {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 800;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 /* Form Styles */
@@ -438,9 +434,9 @@ select option {
     width: 100%;
     padding: 12px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #ffffff;
+    background: #f5f5f5;
+    border: 1px solid #dddddd;
+    color: #333333;
     font-size: 16px;
     font-family: inherit;
     outline: none;
@@ -677,12 +673,43 @@ table td img {
         gap: 0;
     }
 
-    .top-nav {
-        display: none; /* Hide top nav on small screens */
+    .top-nav, .nav-list {
+        display: none;
     }
 
-    .nav-list {
-        display: none; /* In a real app this would toggle */
+    .nav-section.active {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        display: flex !important;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        z-index: 999;
+    }
+    
+    .nav-section.active .top-nav,
+    .nav-section.active .nav-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+    
+    .nav-section.active .top-nav {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+
+    .nav-section.active a {
+        color: #011535;
+    }
+    
+    .nav-section.active .nav-list a:hover::after {
+        background-color: #011535;
     }
 
     .glass-modal {
@@ -690,3 +717,6 @@ table td img {
         width: 95%;
     }
 }
+
+.glass-modal .close-btn { color: #666; }
+.glass-modal .close-btn:hover { color: #ff3366; }
