@@ -72,7 +72,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    transition: all 0.3s;
+    
 }
 
 .nav-item i {
@@ -390,7 +390,7 @@ body {
     font-size: 12px;
     cursor: pointer;
     margin-top: auto;
-    transition: all 0.3s;
+    
 }
 
 .outline-btn:hover {
@@ -520,7 +520,7 @@ body {
     align-items: center;
     text-align: center;
     gap: 8px;
-    transition: all 0.3s;
+    
 }
 
 .action-btn i {
@@ -666,7 +666,7 @@ body {
     cursor: pointer;
     font-size: 13px;
     margin-bottom: 15px;
-    transition: background 0.3s;
+    
 }
 
 .purple-btn {

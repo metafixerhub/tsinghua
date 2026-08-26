@@ -19,13 +19,10 @@ body {
     z-index: 100;
     /* Dark gradient at top for text legibility */
     background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
-    animation: slideDown 1s ease-out forwards;
+    
 }
 
-@keyframes slideDown {
-    from { transform: translateY(-100%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
+
 
 .header-container {
     display: flex;
@@ -47,7 +44,7 @@ body {
     height: 55px; /* Adjust based on the actual logo image */
     width: auto;
     object-fit: contain;
-    transition: transform 0.3s ease;
+    
 }
 
 .logo-img:hover {
@@ -174,7 +171,7 @@ body {
     width: 100%;
     cursor: pointer;
     margin-top: 15px;
-    transition: background 0.3s;
+    
 }
 
 .submit-btn:hover {
@@ -194,7 +191,7 @@ body {
     text-decoration: none;
     font-size: 13px;
     font-weight: 400;
-    transition: color 0.2s ease;
+    
 }
 
 .top-nav a:hover {
@@ -232,7 +229,7 @@ body {
     font-size: 18px;
     font-weight: 700;
     text-transform: capitalize;
-    transition: all 0.3s ease;
+    
     text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
     position: relative;
 }
@@ -245,7 +242,7 @@ body {
     bottom: -5px;
     left: 0;
     background-color: #ffffff;
-    transition: width 0.3s ease;
+    
 }
 
 .nav-list a:hover::after {
@@ -266,7 +263,7 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    
 }
 
 .menu-toggle:hover {
@@ -281,7 +278,7 @@ body {
 .menu-toggle i {
     color: #ffffff;
     font-size: 28px;
-    transition: transform 0.5s ease;
+    
 }
 
 /* Form Scroll Container for large forms */
@@ -365,7 +362,7 @@ select option {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    animation: fadeIn 0.3s ease-in-out;
+    
 }
 
 /* Dark overlay on top of the tech city to make the form pop */
@@ -405,7 +402,7 @@ select option {
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
-    transition: color 0.3s ease;
+    
     z-index: 10;
 }
 
@@ -447,7 +444,7 @@ select option {
     font-size: 16px;
     font-family: inherit;
     outline: none;
-    transition: all 0.3s ease;
+    
 }
 
 .input-group input::placeholder,
@@ -472,7 +469,7 @@ select option {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
+    
     margin-top: 10px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -529,7 +526,7 @@ table td img {
     border-radius: 4px;
     cursor: pointer;
     font-size: 12px;
-    transition: background 0.3s;
+    
 }
 
 .delete-btn:hover {
