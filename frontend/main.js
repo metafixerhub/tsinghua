@@ -1,16 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Elements ---
-    const registerModal = document.getElementById('registerModal');
     const adminModal = document.getElementById('adminModal');
     
     const openRegisterBtn = document.getElementById('openRegisterBtn');
     const openAdminBtn = document.getElementById('openAdminBtn');
     
-    const closeRegisterBtn = document.getElementById('closeRegisterBtn');
     const closeAdminBtn = document.getElementById('closeAdminBtn');
     
     const registrationForm = document.getElementById('registrationForm');
-    const registerSuccessMsg = document.getElementById('registerSuccessMsg');
     
     const participantsTableBody = document.querySelector('#participantsTable tbody');
     const refreshAdminBtn = document.getElementById('refreshAdminBtn');
@@ -47,21 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    closeRegisterBtn.addEventListener('click', () => {
-        registerModal.style.display = 'none';
-        registerSuccessMsg.style.display = 'none'; // reset
-    });
-
     closeAdminBtn.addEventListener('click', () => {
         adminModal.style.display = 'none';
     });
 
     // Close on clicking outside
     window.addEventListener('click', (e) => {
-        if (e.target === registerModal) {
-            registerModal.style.display = 'none';
-            registerSuccessMsg.style.display = 'none';
-        }
         if (e.target === adminModal) {
             adminModal.style.display = 'none';
         }
