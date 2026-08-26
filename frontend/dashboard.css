@@ -806,7 +806,13 @@ body {
 }
 
 @media (max-width: 768px) {
-    body { flex-direction: column; height: auto; }
+    body { 
+        flex-direction: column; 
+        height: auto; 
+        background-attachment: scroll; /* Fixes iOS Safari black screen crash */
+        overflow-x: hidden; /* Prevents horizontal scroll void */
+        width: 100%;
+    }
     
     /* Sidebar adjustments for mobile */
     .sidebar { width: 100%; padding: 15px 0; border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }

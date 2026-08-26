@@ -654,13 +654,25 @@ table td img {
 }
 
 @media (max-width: 768px) {
+    .hero {
+        align-items: flex-start;
+        padding-top: 100px;
+        height: auto;
+        overflow: visible;
+    }
+
     .hero-split {
         flex-direction: column;
-        padding-top: 20px;
+        padding-top: 0px;
     }
     
     .hero-content h1 {
-        font-size: 36px;
+        font-size: 32px;
+    }
+
+    .hero-form-container {
+        width: 100%;
+        max-width: 100%;
     }
 
     .input-row {
