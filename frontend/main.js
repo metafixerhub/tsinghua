@@ -168,6 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 ? `<img src="${p.logoUrl}" alt="Logo">` 
                 : '<span style="color:rgba(255,255,255,0.5)">No Logo</span>';
 
+            // Handle project file
+            const projectLink = p.projectFileUrl 
+                ? `<a href="https://tsinghua-1.onrender.com${p.projectFileUrl}" target="_blank" style="color:#4ade80; text-decoration:underline;">View PDF</a>` 
+                : '<span style="color:rgba(255,255,255,0.5)">No File</span>';
+
             // Create Delete Button
             const deleteBtn = document.createElement('button');
             deleteBtn.textContent = 'Delete';
@@ -187,6 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${p.email || ''}</td>
                 <td>${p.country || ''}</td>
                 <td>${p.fieldOfInterest || ''}</td>
+                <td>${projectLink}</td>
                 <td class="action-cell"></td>
             `;
             // Append the button properly to avoid innerHTML breaking listeners

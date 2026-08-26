@@ -9,10 +9,10 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('Successfully connected to MongoDB Atlas!'))
-    .catch((error) => console.error('MongoDB connection error:', error));
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://miciy49540_db_user:npia0a1kBmdeck1P@cluster1.hggxtkz.mongodb.net/competition?retryWrites=true&w=majority';
+mongoose.connect(MONGODB_URI)
+    .then(() => console.log('Connected to new MongoDB Atlas cluster successfully!'))
+    .catch(err => console.error('MongoDB connection error:', err));
 
 // Setup Middleware
 app.use(cors());
@@ -56,6 +56,7 @@ const participantSchema = new mongoose.Schema({
     fieldOfInterest: String,
     logoUrl: String,
     unionId: String,
+    projectFileUrl: String,
     registrationDate: { type: Date, default: Date.now }
 });
 
@@ -110,6 +111,39 @@ app.post('/api/login', async (req, res) => {
     } catch (error) {
         console.error('Login error:', error);
         res.status(500).json({ message: 'Error logging in.' });
+    }
+});
+
+// Project Upload Route
+app.post('/api/upload-project', upload.single('projectFile'), async (req, res) => {
+    try {
+        const { unionId } = req.body;
+        
+        if (!unionId) {
+            return res.status(400).json({ message: 'Union ID is required.' });
+        }
+
+        if (!req.file) {
+            return res.status(400).json({ message: 'No file uploaded.' });
+        }
+
+        const projectFileUrl = `/uploads/${req.file.filename}`;
+        
+        const participant = await Participant.findOneAndUpdate(
+            { unionId },
+            { projectFileUrl },
+            { new: true }
+        );
+        
+        if (participant) {
+            console.log('Project file uploaded for:', participant.name);
+            res.json({ message: 'Project uploaded successfully', participant });
+        } else {
+            res.status(404).json({ message: 'Invalid Union ID. Participant not found.' });
+        }
+    } catch (error) {
+        console.error('Upload error:', error);
+        res.status(500).json({ message: 'Error uploading project.' });
     }
 });
 

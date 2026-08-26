@@ -259,12 +259,15 @@
                     <div class="upload-area">
                         <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
                         <p>Have you completed your project documentation?<br>Upload your 5-10 page PDF from here.</p>
-                        <button class="primary-btn purple-btn">Upload PDF</button>
+                        
+                        <input type="file" id="projectFileInput" accept=".pdf" style="display:none">
+                        <button id="triggerUploadBtn" class="primary-btn purple-btn">Upload PDF</button>
+                        
                         <small>Accepted format: PDF only<br>Minimum: 5 pages | Maximum: 10 pages</small>
                     </div>
-                    <div class="upload-status">
-                        <p>No file uploaded yet</p>
-                        <small>Once uploaded, your file will appear here.</small>
+                    <div class="upload-status" id="uploadStatusBox">
+                        <p id="uploadStatusTitle">No file uploaded yet</p>
+                        <small id="uploadStatusDesc">Once uploaded, your file will appear here.</small>
                     </div>
                 </div>
                 

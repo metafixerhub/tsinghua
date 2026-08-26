@@ -33,7 +33,79 @@ document.addEventListener('DOMContentLoaded', () => {
     // Project Status Tracker
     document.getElementById('cardTopic').textContent = participant.fieldOfInterest || 'Not Selected';
 
-    // 3. Handle Logout
+    // Check if file is already uploaded
+    const updateUploadUI = (fileUrl) => {
+        const title = document.getElementById('uploadStatusTitle');
+        const desc = document.getElementById('uploadStatusDesc');
+        const box = document.getElementById('uploadStatusBox');
+        
+        if (fileUrl) {
+            title.textContent = 'Project documentation uploaded successfully!';
+            title.style.color = '#4ade80'; // Green
+            desc.innerHTML = `<a href="https://tsinghua-1.onrender.com${fileUrl}" target="_blank" style="color:#3b82f6; text-decoration:underline;">View Uploaded PDF</a>`;
+            box.style.borderColor = '#4ade80';
+        }
+    };
+    
+    updateUploadUI(participant.projectFileUrl);
+
+    // 3. Handle File Upload
+    const triggerUploadBtn = document.getElementById('triggerUploadBtn');
+    const projectFileInput = document.getElementById('projectFileInput');
+
+    if (triggerUploadBtn && projectFileInput) {
+        triggerUploadBtn.addEventListener('click', () => {
+            projectFileInput.click();
+        });
+
+        projectFileInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // Optional: validate it's a PDF
+            if (file.type !== 'application/pdf') {
+                alert('Please upload a valid PDF file.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('projectFile', file);
+            formData.append('unionId', participant.unionId);
+
+            try {
+                // Change button text while uploading
+                const originalText = triggerUploadBtn.textContent;
+                triggerUploadBtn.textContent = 'Uploading...';
+                triggerUploadBtn.disabled = true;
+
+                const response = await fetch('https://tsinghua-1.onrender.com/api/upload-project', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Update localStorage with new data
+                    localStorage.setItem('participantData', JSON.stringify(data.participant));
+                    
+                    // Update UI
+                    updateUploadUI(data.participant.projectFileUrl);
+                    alert('Project PDF uploaded successfully!');
+                } else {
+                    alert('Upload failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Upload Error:', error);
+                alert('An error occurred during upload.');
+            } finally {
+                triggerUploadBtn.textContent = 'Upload PDF';
+                triggerUploadBtn.disabled = false;
+            }
+        });
+    }
+
+    // 4. Handle Logout
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', (e) => {
