@@ -9,9 +9,9 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://miciy49540_db_user:npia0a1kBmdeck1P@cluster1.hggxtkz.mongodb.net/competition?retryWrites=true&w=majority';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://hecoyi3863_db_user:JeVfbcymm6SF1bmI@cluster0.1qeihro.mongodb.net/competition?retryWrites=true&w=majority';
 mongoose.connect(MONGODB_URI)
-    .then(() => console.log('Connected to new MongoDB Atlas cluster successfully!'))
+    .then(() => console.log('Connected to MongoDB Atlas successfully!'))
     .catch(err => console.error('MongoDB connection error:', err));
 
 // Setup Middleware
