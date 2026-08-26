@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Genius</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Dashboard Styles -->
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <h2>Genius</h2>
+            <p>TECH GENIUS<br>COMPETITION</p>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+            <a href="#" class="nav-item"><i class="fa-regular fa-user"></i> My Profile</a>
+            <a href="#" class="nav-item"><i class="fa-solid fa-list-check"></i> My Topic</a>
+            <a href="#" class="nav-item"><i class="fa-regular fa-folder-open"></i> My Project</a>
+            <a href="#" class="nav-item"><i class="fa-regular fa-file-lines"></i> Documentation</a>
+            <a href="#" class="nav-item"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Project</a>
+            <a href="#" class="nav-item"><i class="fa-regular fa-envelope"></i> Messages <span class="badge">2</span></a>
+            <a href="#" class="nav-item"><i class="fa-solid fa-clipboard-list"></i> Instructions</a>
+            <a href="#" class="nav-item"><i class="fa-solid fa-book-open"></i> Resources</a>
+            <a href="#" class="nav-item"><i class="fa-regular fa-circle-question"></i> Help & Support</a>
+            <a href="#" class="nav-item" id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+        </nav>
+
+        <div class="sidebar-banner">
+            <h3>UNLOCK<br>THE TECH<br>GENIUS<br>IN YOU</h3>
+            <i class="fa-solid fa-trophy trophy-icon"></i>
+        </div>
+    </aside>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-content">
+        
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-welcome">
+                <h1>Welcome, <span id="headerName">Student</span>! <i class="fa-solid fa-hand-wave wave-emoji">👋</i></h1>
+                <p>Let's build, innovate and make an impact.</p>
+            </div>
+            
+            <div class="header-right">
+                <div class="contact-pill">
+                    <div class="phone-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="contact-text">
+                        <small>Need Help?<br>Call Us Anytime</small>
+                        <span><i class="fa-brands fa-whatsapp"></i> +91 98765 43210</span>
+                    </div>
+                </div>
+                
+                <div class="notification-icon">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot">3</span>
+                </div>
+                
+                <div class="user-profile">
+                    <div class="avatar">
+                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile">
+                    </div>
+                    <div class="user-info">
+                        <strong id="topNavName">Student</strong>
+                        <small id="topNavGrade">Grade</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Row -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-icon purple"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="stat-details">
+                    <small>My Status</small>
+                    <strong>Active Participant</strong>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon blue"><i class="fa-solid fa-award"></i></div>
+                <div class="stat-details">
+                    <small>Competition Level</small>
+                    <strong>Level 1</strong>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon green"><i class="fa-solid fa-brain"></i></div>
+                <div class="stat-details">
+                    <small>Selected Topic</small>
+                    <strong id="statTopic">Loading...</strong>
+                </div>
+            </div>
+            
+            <div class="stat-card progress-stat">
+                <div class="stat-icon orange"><i class="fa-solid fa-star"></i></div>
+                <div class="stat-details">
+                    <small>Dashboard Progress</small>
+                    <strong>60%</strong>
+                    <div class="progress-bar-container"><div class="progress-bar" style="width: 60%"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Grid -->
+        <div class="middle-grid">
+            
+            <!-- Left Column: Info & Tracker -->
+            <div class="left-col">
+                <div class="info-tracker-row">
+                    
+                    <!-- Student Info Card -->
+                    <div class="card student-info-card">
+                        <div class="avatar-large">
+                            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile">
+                        </div>
+                        <div class="info-list">
+                            <div class="info-item"><span>Student Name</span> <span>:</span> <strong id="infoName">...</strong></div>
+                            <div class="info-item"><span>Grade</span> <span>:</span> <strong id="infoGrade">...</strong></div>
+                            <div class="info-item"><span>School Name</span> <span>:</span> <strong id="infoSchool">...</strong></div>
+                            <div class="info-item"><span>School ID</span> <span>:</span> <strong>Not Provided</strong></div>
+                            <div class="info-item"><span>City / Location</span> <span>:</span> <strong id="infoLocation">...</strong></div>
+                            <div class="info-item"><span>Phone Number</span> <span>:</span> <strong id="infoPhone">...</strong></div>
+                            <div class="info-item"><span>Email Address</span> <span>:</span> <strong id="infoEmail">...</strong></div>
+                            <div class="info-item"><span>Registration ID</span> <span>:</span> <strong id="infoUnionId">...</strong></div>
+                        </div>
+                        <button class="outline-btn"><i class="fa-solid fa-pen-to-square"></i> Edit Profile</button>
+                    </div>
+                    
+                    <!-- Project Status Tracker -->
+                    <div class="card project-status-card">
+                        <h3>My Competition Topic & Project Status</h3>
+                        
+                        <div class="topic-box">
+                            <small>Selected Topic</small>
+                            <div class="topic-flex">
+                                <strong class="topic-title highlight-orange" id="cardTopic">...</strong>
+                                <button class="outline-btn-small">Change Topic</button>
+                            </div>
+                        </div>
+                        
+                        <div class="topic-box">
+                            <small>Project Title</small>
+                            <div class="topic-flex">
+                                <strong class="topic-title highlight-yellow">My Tech Genius Project</strong>
+                                <button class="outline-btn-small">Edit Title</button>
+                            </div>
+                        </div>
+                        
+                        <div class="tracker-container">
+                            <small>Project Status</small>
+                            <ul class="stepper">
+                                <li class="step completed"><span><i class="fa-solid fa-check"></i></span><p>Topic Selected</p></li>
+                                <li class="step completed"><span><i class="fa-solid fa-check"></i></span><p>Research Completed</p></li>
+                                <li class="step current"><span><i class="fa-solid fa-circle"></i></span><p>Project In Progress</p></li>
+                                <li class="step"><span></span><p>Testing Pending</p></li>
+                                <li class="step"><span></span><p>Documentation Pending</p></li>
+                                <li class="step"><span></span><p>Ready to Submit</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions Row -->
+                <div class="card quick-actions-card">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn blue"><i class="fa-regular fa-star"></i> <span>My Project<br><small>View & Update</small></span></button>
+                        <button class="action-btn purple"><i class="fa-solid fa-cloud-arrow-up"></i> <span>Upload<br><small>Documentation</small></span></button>
+                        <button class="action-btn green"><i class="fa-solid fa-list"></i> <span>Instructions<br><small>View Guidelines</small></span></button>
+                        <button class="action-btn orange"><i class="fa-solid fa-book"></i> <span>Resources<br><small>Learning Material</small></span></button>
+                        <button class="action-btn pink"><i class="fa-solid fa-phone-volume"></i> <span>Need Help?<br><small>Call Support</small></span></button>
+                    </div>
+                </div>
+
+                <!-- Announcements & Messages Row -->
+                <div class="announcements-messages-row">
+                    <div class="card feed-card">
+                        <div class="feed-header">
+                            <h3><i class="fa-solid fa-bullhorn highlight-orange"></i> Announcements</h3>
+                            <button class="outline-btn-small">View All</button>
+                        </div>
+                        <ul class="feed-list">
+                            <li>
+                                <div class="feed-icon"><i class="fa-regular fa-calendar-check"></i></div>
+                                <div class="feed-text">
+                                    <strong>Final submission last date: 30 June 2026</strong>
+                                    <p>Make sure to upload your final project documentation before the deadline.</p>
+                                </div>
+                                <div class="feed-date">20 May 2026</div>
+                            </li>
+                            <li>
+                                <div class="feed-icon"><i class="fa-solid fa-video"></i></div>
+                                <div class="feed-text">
+                                    <strong>Live Evaluation Round</strong>
+                                    <p>Shortlisted participants will be informed soon about the live presentation.</p>
+                                </div>
+                                <div class="feed-date">18 May 2026</div>
+                            </li>
+                            <li>
+                                <div class="feed-icon"><i class="fa-solid fa-folder-plus"></i></div>
+                                <div class="feed-text">
+                                    <strong>New Resources Added</strong>
+                                    <p>Check out the new learning materials and guides in the Resources section.</p>
+                                </div>
+                                <div class="feed-date">15 May 2026</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card feed-card">
+                        <div class="feed-header">
+                            <h3>Recent Messages</h3>
+                            <button class="outline-btn-small">View All</button>
+                        </div>
+                        <ul class="feed-list">
+                            <li>
+                                <div class="feed-avatar"><img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Avatar"></div>
+                                <div class="feed-text">
+                                    <strong>Team Genius</strong>
+                                    <p>Welcome to the Tech Genius Competition! Choose your topic...</p>
+                                </div>
+                                <div class="feed-date">19 May 2026<br>10:30 AM</div>
+                            </li>
+                            <li>
+                                <div class="feed-avatar"><img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Avatar"></div>
+                                <div class="feed-text">
+                                    <strong>Support Team</strong>
+                                    <p>If you face any technical issue, contact us anytime.</p>
+                                </div>
+                                <div class="feed-date">18 May 2026<br>04:15 PM</div>
+                            </li>
+                            <li>
+                                <div class="feed-avatar"><img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Avatar"></div>
+                                <div class="feed-text">
+                                    <strong>Team Genius</strong>
+                                    <p>Reminder: Documentation must be 5-10 pages in PDF.</p>
+                                </div>
+                                <div class="feed-date">17 May 2026<br>11:00 AM</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Upload & Instructions -->
+            <div class="right-col">
+                <div class="card upload-card">
+                    <h3>Upload Project Documentation</h3>
+                    <div class="upload-area">
+                        <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                        <p>Have you completed your project documentation?<br>Upload your 5-10 page PDF from here.</p>
+                        <button class="primary-btn purple-btn">Upload PDF</button>
+                        <small>Accepted format: PDF only<br>Minimum: 5 pages | Maximum: 10 pages</small>
+                    </div>
+                    <div class="upload-status">
+                        <p>No file uploaded yet</p>
+                        <small>Once uploaded, your file will appear here.</small>
+                    </div>
+                </div>
+                
+                <div class="card instructions-card">
+                    <h3>Important Instructions</h3>
+                    <ul class="check-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Select only ONE topic and complete your project around it.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Your documentation must be in PDF format.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Minimum 5 pages and Maximum 10 pages.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Use genuine images, screenshots, diagrams and your own work.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> You must be able to explain your project to evaluators.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> AI tools can be used for learning and assistance, but your understanding is important.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Do not copy-paste content from the internet or AI.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Submit your project before the last date.</li>
+                    </ul>
+                    <button class="outline-btn full-width"><i class="fa-regular fa-file-lines"></i> View Full Instructions</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Process Footer -->
+        <footer class="dashboard-footer">
+            <div class="process-steps">
+                <div class="step-item">
+                    <i class="fa-solid fa-book-open icon-large"></i>
+                    <div>
+                        <strong>RESEARCH</strong>
+                        <p>Discover and understand<br>your topic deeply.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <i class="fa-solid fa-pen-ruler icon-large"></i>
+                    <div>
+                        <strong>DESIGN</strong>
+                        <p>Plan your idea and<br>design the solution.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <i class="fa-solid fa-code icon-large"></i>
+                    <div>
+                        <strong>BUILD</strong>
+                        <p>Develop your project<br>using technology.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <i class="fa-solid fa-flask icon-large"></i>
+                    <div>
+                        <strong>TEST</strong>
+                        <p>Test your project and<br>improve it.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <i class="fa-solid fa-person-chalkboard icon-large"></i>
+                    <div>
+                        <strong>PRESENT</strong>
+                        <p>Document and present<br>your amazing work.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-cta">
+                <div class="cta-text">
+                    <strong>UNLOCK THE TECH GENIUS IN YOU.</strong>
+                    <p>Your idea today, the technology of tomorrow.</p>
+                </div>
+                <i class="fa-solid fa-rocket rocket-icon"></i>
+            </div>
+        </footer>
+
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,13 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Elements ---
     const adminModal = document.getElementById('adminModal');
+    const loginModal = document.getElementById('loginModal');
     
     const openRegisterBtn = document.getElementById('openRegisterBtn');
     const openAdminBtn = document.getElementById('openAdminBtn');
+    const openLoginBtn = document.getElementById('openLoginBtn');
     
     const closeAdminBtn = document.getElementById('closeAdminBtn');
+    const closeLoginBtn = document.getElementById('closeLoginBtn');
     
     const registrationForm = document.getElementById('registrationForm');
+    const loginForm = document.getElementById('loginForm');
     
     const participantsTableBody = document.querySelector('#participantsTable tbody');
     const refreshAdminBtn = document.getElementById('refreshAdminBtn');
@@ -44,6 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- Login Modal Logic ---
+    openLoginBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginModal.style.display = 'flex';
+        if (navSection.classList.contains('active')) {
+            navSection.classList.remove('active');
+        }
+    });
+
+    closeLoginBtn.addEventListener('click', () => {
+        loginModal.style.display = 'none';
+    });
+
     closeAdminBtn.addEventListener('click', () => {
         adminModal.style.display = 'none';
     });
@@ -52,6 +69,36 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', (e) => {
         if (e.target === adminModal) {
             adminModal.style.display = 'none';
+        }
+        if (e.target === loginModal) {
+            loginModal.style.display = 'none';
+        }
+    });
+
+    // --- Login Form Submission Logic ---
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const unionId = document.getElementById('loginUnionId').value;
+        
+        try {
+            const response = await fetch('https://tsinghua-1.onrender.com/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ unionId })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                // Save participant data in localStorage so the dashboard can read it
+                localStorage.setItem('participantData', JSON.stringify(data.participant));
+                // Redirect to dashboard page
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Invalid Union ID. Please check and try again.');
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            alert('An error occurred. Make sure the server is running.');
         }
     });
 
@@ -180,7 +227,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     goToDashboardBtn.addEventListener('click', () => {
-        alert("The Student Dashboard is coming soon!");
+        // When clicking Go to Dashboard from success popup, they should login
         document.getElementById('successModal').style.display = 'none';
+        loginModal.style.display = 'flex';
     });
 });

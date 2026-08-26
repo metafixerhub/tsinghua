@@ -90,7 +90,30 @@ app.post('/api/register', upload.single('logo'), async (req, res) => {
     }
 });
 
-// API Endpoint to get all participants for the Admin view
+// Login Route
+app.post('/api/login', async (req, res) => {
+    try {
+        const { unionId } = req.body;
+        
+        if (!unionId) {
+            return res.status(400).json({ message: 'Union ID is required.' });
+        }
+
+        const participant = await Participant.findOne({ unionId });
+        
+        if (participant) {
+            console.log('Participant logged in:', participant.name);
+            res.json({ message: 'Login successful', participant });
+        } else {
+            res.status(404).json({ message: 'Invalid Union ID. Participant not found.' });
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({ message: 'Error logging in.' });
+    }
+});
+
+// Admin Route to fetch all participants for the Admin view
 app.get('/api/participants', async (req, res) => {
     try {
         // Fetch all participants from MongoDB, sorted by newest first
