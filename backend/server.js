@@ -54,12 +54,6 @@ const participantSchema = new mongoose.Schema({
     email: String,
     country: String,
     fieldOfInterest: String,
-    experience: String,
-    projectType: String,
-    comfortableAI: String,
-    onTheSpot: String,
-    whyParticipate: String,
-    agreement: String,
     logoUrl: String,
     registrationDate: { type: Date, default: Date.now }
 });
@@ -71,14 +65,12 @@ app.post('/api/register', upload.single('logo'), async (req, res) => {
     try {
         const { 
             name, age, classGrade, school, address, cityState, 
-            phone, email, country, fieldOfInterest, experience, 
-            projectType, comfortableAI, onTheSpot, whyParticipate, agreement 
+            phone, email, country, fieldOfInterest
         } = req.body;
         
         const participantData = {
             name, age, classGrade, school, address, cityState, 
-            phone, email, country, fieldOfInterest, experience, 
-            projectType, comfortableAI, onTheSpot, whyParticipate, agreement,
+            phone, email, country, fieldOfInterest,
             logoUrl: req.file ? `/uploads/${req.file.filename}` : null
         };
 

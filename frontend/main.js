@@ -146,12 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${p.email || ''}</td>
                 <td>${p.country || ''}</td>
                 <td>${p.fieldOfInterest || ''}</td>
-                <td>${p.experience || ''}</td>
-                <td>${p.projectType || ''}</td>
-                <td>${p.comfortableAI || ''}</td>
-                <td>${p.onTheSpot || ''}</td>
-                <td>${p.whyParticipate || ''}</td>
-                <td>${p.agreement || ''}</td>
                 <td class="action-cell"></td>
             `;
             // Append the button properly to avoid innerHTML breaking listeners
