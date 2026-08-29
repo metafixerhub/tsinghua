@@ -6,7 +6,20 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-body { margin: 0; font-family: 'Open Sans', sans-serif; color: #ffffff; overflow-x: hidden; }
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #ffffff;
+    overflow-x: hidden;
+    background: url('backgroud.jpeg') center/cover no-repeat fixed;
+    background-color: #030a16;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
+}
 
 /* ===== UTILITIES & COLORS ===== */
 .highlight-orange { color: #f28500; }
