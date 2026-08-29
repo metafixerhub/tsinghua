@@ -6,8 +6,18 @@
 }
 
 body {
+    margin: 0;
     font-family: 'Open Sans', sans-serif;
-    background-color: #111;
+    color: #ffffff;
+    overflow-x: hidden;
+    background: url('backgroud.jpeg') center/cover no-repeat fixed;
+    background-color: #030a16;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll; /* Fixes iOS Safari black screen crash */
+    }
 }
 
 /* Header Styles */
@@ -64,7 +74,7 @@ body {
 .hero {
     min-height: 100vh;
     padding: 100px 5% 50px;
-    background: linear-gradient(135deg, #011535 0%, #000000 100%);
+    background: transparent;
     position: relative;
     overflow: hidden;
     display: flex;

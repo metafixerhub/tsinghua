@@ -114,4 +114,52 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'index.html';
         });
     }
+
+    // 5. Fetch and Render Notifications
+    const notificationList = document.getElementById('notificationList');
+    
+    const fetchNotifications = async () => {
+        try {
+            const response = await fetch('https://tsinghua-1.onrender.com/api/notifications/' + participant.unionId);
+            if (response.ok) {
+                const notifications = await response.json();
+                renderNotifications(notifications);
+            }
+        } catch (err) {
+            console.error('Error fetching notifications:', err);
+        }
+    };
+    
+    const renderNotifications = (notifications) => {
+        if (!notificationList) return;
+        notificationList.innerHTML = '';
+        
+        if (notifications.length === 0) {
+            notificationList.innerHTML = '<li><div class="feed-text"><p>No new notifications.</p></div></li>';
+            return;
+        }
+        
+        // Sort by date descending
+        notifications.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        notifications.forEach(n => {
+            const li = document.createElement('li');
+            const dateObj = new Date(n.date);
+            const dateStr = dateObj.toLocaleDateString();
+            const timeStr = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            li.innerHTML = `
+                <div class="feed-avatar"><img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Admin"></div>
+                <div class="feed-text">
+                    <strong>Admin Message</strong>
+                    <p>${n.message}</p>
+                </div>
+                <div class="feed-date">${dateStr}<br>${timeStr}</div>
+            `;
+            notificationList.appendChild(li);
+        });
+    };
+    
+    fetchNotifications();
+
 });

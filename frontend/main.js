@@ -1,5 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Auto Redirect if already logged in ---
+    if (localStorage.getItem('participantData')) {
+        window.location.href = 'dashboard.html';
+        return; // Stop execution
+    }
     // --- Elements ---
+
+    const globalLoader = document.getElementById('global-loader');
+    const showLoader = () => { if(globalLoader) globalLoader.classList.add('active'); };
+    const hideLoader = () => { if(globalLoader) globalLoader.classList.remove('active'); };
+
     const adminModal = document.getElementById('adminModal');
     const loginModal = document.getElementById('loginModal');
     
@@ -79,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const unionId = document.getElementById('loginUnionId').value;
+        showLoader();
         
         try {
             const response = await fetch('https://tsinghua-1.onrender.com/api/login', {
@@ -99,14 +110,15 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Login error:', error);
             alert('An error occurred. Make sure the server is running.');
+        } finally {
+            hideLoader();
         }
     });
 
     // --- Form Submission Logic ---
     registrationForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        // We use FormData to handle the file upload
+        showLoader();
         const formData = new FormData(registrationForm);
         
         try {
@@ -119,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 const data = await response.json();
                 const unionId = data.participant.unionId;
+                // Auto save to local storage
+                localStorage.setItem('participantData', JSON.stringify(data.participant));
                 
                 registrationForm.reset();
                 
@@ -174,11 +188,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 : '<span style="color:rgba(255,255,255,0.5)">No File</span>';
 
             // Create Delete Button
+            const actionContainer = document.createElement('div');
+            actionContainer.style.display = 'flex';
+            actionContainer.style.gap = '5px';
+            
             const deleteBtn = document.createElement('button');
             deleteBtn.textContent = 'Delete';
             deleteBtn.className = 'delete-btn';
             deleteBtn.onclick = () => deleteParticipant(p._id || p.id);
+            
+            const msgBtn = document.createElement('button');
+            msgBtn.textContent = 'Message';
+            msgBtn.style.background = '#3b82f6';
+            msgBtn.style.color = '#fff';
+            msgBtn.style.border = 'none';
+            msgBtn.style.padding = '5px 10px';
+            msgBtn.style.borderRadius = '5px';
+            msgBtn.style.cursor = 'pointer';
+            msgBtn.onclick = () => sendAdminMessage(p.unionId, p.name);
 
+            actionContainer.appendChild(msgBtn);
+            actionContainer.appendChild(deleteBtn);
+            
             tr.innerHTML = `
                 <td>${logoHtml}</td>
                 <td style="font-weight:bold; color:#f28500;">${p.unionId || 'N/A'}</td>
@@ -195,11 +226,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${projectLink}</td>
                 <td class="action-cell"></td>
             `;
-            // Append the button properly to avoid innerHTML breaking listeners
-            tr.querySelector('.action-cell').appendChild(deleteBtn);
+            tr.querySelector('.action-cell').appendChild(actionContainer);
             
             participantsTableBody.appendChild(tr);
         });
+    };
+
+    
+    const sendAdminMessage = async (unionId, name) => {
+        const msg = prompt('Enter message for ' + name + ' (Union ID: ' + unionId + '):');
+        if (!msg) return;
+        
+        showLoader();
+        try {
+            const response = await fetch('https://tsinghua-1.onrender.com/api/notifications', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ unionId, message: msg })
+            });
+            if (response.ok) {
+                alert('Message sent successfully!');
+            } else {
+                alert('Failed to send message.');
+            }
+        } catch (error) {
+            console.error('Error sending message:', error);
+            alert('Error sending message.');
+        } finally {
+            hideLoader();
+        }
     };
 
     const deleteParticipant = async (id) => {
@@ -233,8 +288,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     goToDashboardBtn.addEventListener('click', () => {
-        // When clicking Go to Dashboard from success popup, they should login
-        document.getElementById('successModal').style.display = 'none';
-        loginModal.style.display = 'flex';
+        window.location.href = 'dashboard.html';
     });
+
+    // --- Forgot ID Logic ---
+    const showForgotIdBtn = document.getElementById('showForgotIdBtn');
+    const showLoginBtn = document.getElementById('showLoginBtn');
+    const forgotIdForm = document.getElementById('forgotIdForm');
+    const forgotIdResult = document.getElementById('forgotIdResult');
+    
+    if (showForgotIdBtn && showLoginBtn && forgotIdForm && loginForm) {
+        showForgotIdBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.style.display = 'none';
+            forgotIdForm.style.display = 'block';
+            forgotIdResult.textContent = '';
+        });
+        showLoginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            forgotIdForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        });
+        
+        forgotIdForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('forgotName').value;
+            const email = document.getElementById('forgotEmail').value;
+            showLoader();
+            try {
+                const res = await fetch('https://tsinghua-1.onrender.com/api/find-id', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email })
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    forgotIdResult.textContent = 'Your Union ID is: ' + data.unionId;
+                    forgotIdResult.style.color = '#22c55e';
+                } else {
+                    forgotIdResult.textContent = 'Participant not found. Check details.';
+                    forgotIdResult.style.color = '#ef4444';
+                }
+            } catch (err) {
+                forgotIdResult.textContent = 'Error connecting to server.';
+                forgotIdResult.style.color = '#ef4444';
+            } finally {
+                hideLoader();
+            }
+        });
+    }
+
 });

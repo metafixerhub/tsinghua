@@ -11,6 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="global-loader">
+        <div class="spinner"></div>
+        <div class="spinner-text">Loading...</div>
+    </div>
 
     <header class="site-header">
         <div class="header-container">
@@ -191,7 +195,7 @@
                 <div class="credentials-box">
                     <p><strong>Union ID:</strong> <span id="displayUnionId" class="highlight-orange"></span></p>
                     <p><strong>Password:</strong> <span id="displayPassword" class="highlight-orange"></span></p>
-                    <small>*(Your Union ID and Password are the same 5-digit number)*</small>
+                    <small>*(Your Union ID and Password are the same 3-digit number)*</small>
                 </div>
                 
                 <button id="goToDashboardBtn" class="submit-btn dashboard-btn">Go to Dashboard</button>
@@ -205,14 +209,34 @@
             <span class="close-btn" id="closeLoginBtn">&times;</span>
             <h2>Student Login</h2>
             <form id="loginForm">
-                <p style="color: #cbd5e1; margin-bottom: 20px;">Enter your 5-digit Union ID to access your Dashboard.</p>
+                <p style="color: #cbd5e1; margin-bottom: 20px;">Enter your 3-digit Union ID to access your Dashboard.</p>
                 
                 <div class="input-group">
                     <label>Union ID (Username)</label>
-                    <input type="text" name="unionId" id="loginUnionId" required placeholder="e.g. 48291">
+                    <input type="text" name="unionId" id="loginUnionId" required placeholder="e.g. 482">
                 </div>
                 
                 <button type="submit" class="submit-btn">Login to Dashboard</button>
+                <div style="text-align:center; margin-top:15px;">
+                    <a href="#" id="showForgotIdBtn" style="color:#3b82f6; text-decoration:none;">Forgot your ID?</a>
+                </div>
+            </form>
+            
+            <form id="forgotIdForm" style="display:none;">
+                <p style="color: #cbd5e1; margin-bottom: 15px; font-size: 14px; text-align: center;">Enter your details to find your 3-digit Union ID.</p>
+                <div class="input-group">
+                    <label for="forgotName">Full Name</label>
+                    <input type="text" id="forgotName" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="forgotEmail">Email Address</label>
+                    <input type="email" id="forgotEmail" name="email" required>
+                </div>
+                <button type="submit" class="submit-btn" style="background: #f28500;">Search My ID</button>
+                <div style="text-align:center; margin-top:15px;">
+                    <a href="#" id="showLoginBtn" style="color:#3b82f6; text-decoration:none;">Back to Login</a>
+                </div>
+                <div id="forgotIdResult" style="margin-top:15px; text-align:center; font-weight:bold; color:#22c55e;"></div>
             </form>
         </div>
     </div>

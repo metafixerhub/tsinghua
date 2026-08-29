@@ -6,13 +6,7 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-body {
-    background: url('backgroud.jpeg') center/cover no-repeat fixed;
-    background-color: #030a16; /* Fallback */
-    color: #cbd5e1;
-    display: flex;
-    min-height: 100vh;
-}
+body { margin: 0; font-family: 'Open Sans', sans-serif; color: #ffffff; overflow-x: hidden; }
 
 /* ===== UTILITIES & COLORS ===== */
 .highlight-orange { color: #f28500; }

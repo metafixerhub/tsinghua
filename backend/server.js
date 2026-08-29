@@ -57,6 +57,11 @@ const participantSchema = new mongoose.Schema({
     logoUrl: String,
     unionId: String,
     projectFileUrl: String,
+    notifications: [{ 
+        message: String, 
+        date: { type: Date, default: Date.now }, 
+        read: { type: Boolean, default: false } 
+    }],
     registrationDate: { type: Date, default: Date.now }
 });
 
@@ -70,8 +75,8 @@ app.post('/api/register', upload.single('logo'), async (req, res) => {
             phone, email, country, fieldOfInterest
         } = req.body;
         
-        // Generate 5-digit Union ID
-        const unionId = Math.floor(10000 + Math.random() * 90000).toString();
+        // Generate 3-digit Union ID
+        const unionId = Math.floor(100 + Math.random() * 900).toString();
         
         const participantData = {
             name, age, classGrade, school, address, cityState, 
@@ -167,6 +172,72 @@ app.delete('/api/participants/:id', async (req, res) => {
     } catch (error) {
         console.error('Error deleting participant:', error);
         res.status(500).json({ message: 'Error deleting participant' });
+    }
+});
+
+// API Endpoint to find Union ID by name and email
+app.post('/api/find-id', async (req, res) => {
+    try {
+        const { name, email } = req.body;
+        if (!name || !email) {
+            return res.status(400).json({ message: 'Name and Email are required.' });
+        }
+        // Case-insensitive search
+        const participant = await Participant.findOne({ 
+            name: { $regex: new RegExp('^' + name + '$', 'i') }, 
+            email: { $regex: new RegExp('^' + email + '$', 'i') } 
+        });
+        
+        if (participant) {
+            res.json({ unionId: participant.unionId });
+        } else {
+            res.status(404).json({ message: 'Participant not found.' });
+        }
+    } catch (error) {
+        console.error('Find ID error:', error);
+        res.status(500).json({ message: 'Error finding ID.' });
+    }
+});
+
+// API Endpoint for Admin to push a notification
+app.post('/api/notifications', async (req, res) => {
+    try {
+        const { unionId, message } = req.body;
+        if (!unionId || !message) {
+            return res.status(400).json({ message: 'Union ID and message are required.' });
+        }
+        
+        const participant = await Participant.findOneAndUpdate(
+            { unionId },
+            { $push: { notifications: { message, date: new Date(), read: false } } },
+            { new: true }
+        );
+        
+        if (participant) {
+            res.json({ message: 'Notification sent successfully.' });
+        } else {
+            res.status(404).json({ message: 'Participant not found.' });
+        }
+    } catch (error) {
+        console.error('Push notification error:', error);
+        res.status(500).json({ message: 'Error pushing notification.' });
+    }
+});
+
+// API Endpoint to get notifications for a user
+app.get('/api/notifications/:unionId', async (req, res) => {
+    try {
+        const { unionId } = req.params;
+        const participant = await Participant.findOne({ unionId });
+        
+        if (participant) {
+            res.json(participant.notifications || []);
+        } else {
+            res.status(404).json({ message: 'Participant not found.' });
+        }
+    } catch (error) {
+        console.error('Fetch notifications error:', error);
+        res.status(500).json({ message: 'Error fetching notifications.' });
     }
 });
 
