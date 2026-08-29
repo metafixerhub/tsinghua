@@ -119,6 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
     registrationForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         showLoader();
+        const submitBtn = registrationForm.querySelector('button[type="submit"]');
+        if(submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Registering...'; }
         const formData = new FormData(registrationForm);
         
         try {
@@ -147,6 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Error during registration:', error);
             alert('An error occurred. Make sure the backend server is running.');
+        } finally {
+            hideLoader();
+            const submitBtn = registrationForm.querySelector('button[type="submit"]');
+            if(submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit Application'; }
         }
     });
 
