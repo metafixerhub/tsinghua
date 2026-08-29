@@ -23,17 +23,14 @@
             <p>TECH GENIUS<br>COMPETITION</p>
         </div>
         
-        <nav class="sidebar-nav">
-            <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
-            <a href="#" class="nav-item"><i class="fa-regular fa-user"></i> My Profile</a>
-            <a href="#" class="nav-item"><i class="fa-solid fa-list-check"></i> My Topic</a>
-            <a href="#" class="nav-item"><i class="fa-regular fa-folder-open"></i> My Project</a>
-            <a href="#" class="nav-item"><i class="fa-regular fa-file-lines"></i> Documentation</a>
-            <a href="#" class="nav-item"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Project</a>
-            <a href="#" class="nav-item"><i class="fa-regular fa-envelope"></i> Messages <span class="badge">2</span></a>
-            <a href="#" class="nav-item"><i class="fa-solid fa-clipboard-list"></i> Instructions</a>
-            <a href="#" class="nav-item"><i class="fa-solid fa-book-open"></i> Resources</a>
-            <a href="#" class="nav-item"><i class="fa-regular fa-circle-question"></i> Help & Support</a>
+                <nav class="sidebar-nav">
+            <a href="#top" class="nav-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+            <a href="#my-profile" class="nav-item"><i class="fa-regular fa-user"></i> My Profile</a>
+            <a href="#my-project" class="nav-item"><i class="fa-solid fa-list-check"></i> My Topic & Project</a>
+            <a href="#quick-actions" class="nav-item"><i class="fa-solid fa-bolt"></i> Quick Actions</a>
+            <a href="#messages-announcements" class="nav-item"><i class="fa-regular fa-envelope"></i> Messages & Announcements</a>
+            <a href="#upload-project" class="nav-item"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Project</a>
+            <a href="#instructions" class="nav-item"><i class="fa-solid fa-clipboard-list"></i> Important Instructions</a>
             <a href="#" class="nav-item" id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
         </nav>
 
@@ -47,7 +44,7 @@
     <main class="dashboard-content">
         
         <!-- Header -->
-        <header class="dashboard-header">
+        <header class="dashboard-header" id="top">
             <div class="header-welcome">
                 <h1>Welcome, <span id="headerName">Student</span>! <i class="fa-solid fa-hand-wave wave-emoji">👋</i></h1>
                 <p>Let's build, innovate and make an impact.</p>
@@ -123,7 +120,7 @@
                 <div class="info-tracker-row">
                     
                     <!-- Student Info Card -->
-                    <div class="card student-info-card">
+                    <div class="card student-info-card" id="my-profile">
                         <div class="avatar-large">
                             <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile">
                         </div>
@@ -141,7 +138,7 @@
                     </div>
                     
                     <!-- Project Status Tracker -->
-                    <div class="card project-status-card">
+                    <div class="card project-status-card" id="my-project">
                         <h3>My Competition Topic & Project Status</h3>
                         
                         <div class="topic-box">
@@ -175,7 +172,7 @@
                 </div>
 
                 <!-- Quick Actions Row -->
-                <div class="card quick-actions-card">
+                <div class="card quick-actions-card" id="quick-actions">
                     <h3>Quick Actions</h3>
                     <div class="action-buttons">
                         <button class="action-btn blue"><i class="fa-regular fa-star"></i> <span>My Project<br><small>View & Update</small></span></button>
@@ -187,7 +184,7 @@
                 </div>
 
                 <!-- Announcements & Messages Row -->
-                <div class="announcements-messages-row">
+                <div class="announcements-messages-row" id="messages-announcements">
                     <div class="card feed-card">
                         <div class="feed-header">
                             <h3><i class="fa-solid fa-bullhorn highlight-orange"></i> Announcements</h3>
@@ -258,7 +255,7 @@
 
             <!-- Right Column: Upload & Instructions -->
             <div class="right-col">
-                <div class="card upload-card">
+                <div class="card upload-card" id="upload-project">
                     <h3>Upload Project Documentation</h3>
                     <div class="upload-area">
                         <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
@@ -275,7 +272,7 @@
                     </div>
                 </div>
                 
-                <div class="card instructions-card">
+                <div class="card instructions-card" id="instructions">
                     <h3>Important Instructions</h3>
                     <ul class="check-list">
                         <li><i class="fa-solid fa-circle-check"></i> Select only ONE topic and complete your project around it.</li>
@@ -287,7 +284,7 @@
                         <li><i class="fa-solid fa-circle-check"></i> Do not copy-paste content from the internet or AI.</li>
                         <li><i class="fa-solid fa-circle-check"></i> Submit your project before the last date.</li>
                     </ul>
-                    <button class="outline-btn full-width"><i class="fa-regular fa-file-lines"></i> View Full Instructions</button>
+                    <a href="GUIDE FOR TSHUING_20260826_222242_0000.pdf" target="_blank" class="outline-btn full-width" style="display:inline-block; text-align:center; text-decoration:none;"><i class="fa-regular fa-file-lines"></i> View Full Instructions</a>
                 </div>
             </div>
         </div>
