@@ -11,7 +11,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     color: #ffffff;
     overflow-x: hidden;
-    background: url('backgroud.jpeg') center/cover no-repeat fixed;
+    background: linear-gradient(rgba(3, 10, 22, 0.75), rgba(3, 10, 22, 0.75)), url('backgroud.jpeg') center/cover no-repeat fixed;
     background-color: #030a16;
 }
 
