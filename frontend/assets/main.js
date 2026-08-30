@@ -20,7 +20,7 @@ if (directLoginId) {
 \ndocument.addEventListener('DOMContentLoaded', () => {
     // --- Auto Redirect if already logged in ---
     if (localStorage.getItem('participantData') && !directLoginId) {
-        window.location.href = '/dashboard';
+        window.location.href = window.BASE_URL + '/dashboard/';
         return; // Stop execution
     }
     // --- Elements ---
@@ -96,7 +96,7 @@ if (directLoginId) {
                 // Save participant data in localStorage so the dashboard can read it
                 localStorage.setItem('participantData', JSON.stringify(data.participant));
                 // Redirect to dashboard page
-                window.location.href = '/dashboard';
+                window.location.href = window.BASE_URL + '/dashboard/';
             } else {
                 alert('Invalid Union ID. Please check and try again.');
             }
@@ -151,7 +151,7 @@ if (directLoginId) {
 
     // --- Admin Fetch Logic ---
     
-    if (window.location.pathname.includes('/admin')) {
+    if (window.location.pathname.includes('admin')) {
         const adminLoginBtn = document.getElementById('adminLoginBtn');
         const adminPasswordInput = document.getElementById('adminPasswordInput');
         const adminAuthError = document.getElementById('adminAuthError');
@@ -316,7 +316,7 @@ if (directLoginId) {
     });
     
     if (goToDashboardBtn) goToDashboardBtn.addEventListener('click', () => {
-        window.location.href = '/dashboard';
+        window.location.href = window.BASE_URL + '/dashboard/';
     });
 
     // --- Forgot ID Logic ---
