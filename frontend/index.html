@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>University Navbar</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/assets/style.css">
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -20,8 +20,8 @@
         <div class="header-container">
             <!-- Logo Section -->
             <div class="logo-section">
-                <img src="LOGO.png" alt="University Logo 1" class="logo-img" style="margin-right: 15px;">
-                <img src="completion-logo-removebg-preview (1).png" alt="University Logo 2" class="logo-img">
+                <img src="/assets/LOGO.png" alt="University Logo 1" class="logo-img" style="margin-right: 15px;">
+                <img src="/assets/completion-logo-removebg-preview (1).png" alt="University Logo 2" class="logo-img">
             </div>
 
             <!-- Navigation Section -->
@@ -46,9 +46,9 @@
                         <li><a href="#">Research</a></li>
                         <li><a href="#">News</a></li>
                         <li><a href="#">Campus</a></li>
-                        <li><a href="#" id="openAdminBtn" style="color: #ffb703;">Admin</a></li>
-                        <li><a href="#" id="openLoginBtn" style="color: #4ade80;">Login</a></li>
-                        <li><a href="#" id="openRegisterBtn" class="register-btn">Register Now</a></li>
+                        <li><a href="/admin" style="color: #ffb703;">Admin</a></li>
+                        <li><a href="/login" style="color: #4ade80;">Login</a></li>
+                        <li><a href="/" class="register-btn">Register Now</a></li>
                     </ul>
                 </nav>
             </div>
@@ -149,40 +149,7 @@
         </div>
     </section>
 
-    <!-- Admin Dashboard Modal -->
-    <div class="modal-overlay" id="adminModal">
-        <div class="glass-modal admin-modal-content">
-            <span class="close-btn" id="closeAdminBtn">&times;</span>
-            <h2>Admin Dashboard - Participants</h2>
-            <div class="table-container">
-                <table id="participantsTable">
-                    <thead>
-                        <tr>
-                            <th>Logo</th>
-                            <th>Union ID</th>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Grade</th>
-                            <th>School</th>
-                            <th>Address</th>
-                            <th>City & State</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Country</th>
-                            <th>Field</th>
-                            <th>Project File</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Participants will be loaded here via JS -->
-                    </tbody>
-                </table>
-            </div>
-            <button class="submit-btn" id="refreshAdminBtn" style="margin-top: 20px;">Refresh Data</button>
-        </div>
-    </div>
-
+    
     <!-- Registration Success Popup Modal -->
     <div class="modal-overlay" id="successModal">
         <div class="glass-modal success-modal">
@@ -191,56 +158,15 @@
                 <i class="fa-solid fa-circle-check success-icon"></i>
                 <h2>You have successfully registered!</h2>
                 <p>Welcome to the Tech Genius Competition. Please save your Union credentials below securely.</p>
-                
                 <div class="credentials-box">
                     <p><strong>Union ID:</strong> <span id="displayUnionId" class="highlight-orange"></span></p>
                     <p><strong>Password:</strong> <span id="displayPassword" class="highlight-orange"></span></p>
                     <small>*(Your Union ID and Password are the same 3-digit number)*</small>
                 </div>
-                
                 <button id="goToDashboardBtn" class="submit-btn dashboard-btn">Go to Dashboard</button>
             </div>
         </div>
     </div>
-
-    <!-- Login Modal -->
-    <div class="modal-overlay" id="loginModal">
-        <div class="glass-modal">
-            <span class="close-btn" id="closeLoginBtn">&times;</span>
-            <h2>Student Login</h2>
-            <form id="loginForm">
-                <p style="color: #cbd5e1; margin-bottom: 20px;">Enter your 3-digit Union ID to access your Dashboard.</p>
-                
-                <div class="input-group">
-                    <label>Union ID (Username)</label>
-                    <input type="text" name="unionId" id="loginUnionId" required placeholder="e.g. 482">
-                </div>
-                
-                <button type="submit" class="submit-btn">Login to Dashboard</button>
-                <div style="text-align:center; margin-top:15px;">
-                    <a href="#" id="showForgotIdBtn" style="color:#3b82f6; text-decoration:none;">Forgot your ID?</a>
-                </div>
-            </form>
-            
-            <form id="forgotIdForm" style="display:none;">
-                <p style="color: #cbd5e1; margin-bottom: 15px; font-size: 14px; text-align: center;">Enter your details to find your 3-digit Union ID.</p>
-                <div class="input-group">
-                    <label for="forgotName">Full Name</label>
-                    <input type="text" id="forgotName" name="name" required>
-                </div>
-                <div class="input-group">
-                    <label for="forgotEmail">Email Address</label>
-                    <input type="email" id="forgotEmail" name="email" required>
-                </div>
-                <button type="submit" class="submit-btn" style="background: #f28500;">Search My ID</button>
-                <div style="text-align:center; margin-top:15px;">
-                    <a href="#" id="showLoginBtn" style="color:#3b82f6; text-decoration:none;">Back to Login</a>
-                </div>
-                <div id="forgotIdResult" style="margin-top:15px; text-align:center; font-weight:bold; color:#22c55e;"></div>
-            </form>
-        </div>
-    </div>
-
-    <script src="main.js"></script>
+    <script src="/assets/main.js"></script>
 </body>
 </html>

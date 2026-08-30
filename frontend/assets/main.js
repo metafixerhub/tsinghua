@@ -20,7 +20,7 @@ if (directLoginId) {
 \ndocument.addEventListener('DOMContentLoaded', () => {
     // --- Auto Redirect if already logged in ---
     if (localStorage.getItem('participantData') && !directLoginId) {
-        window.location.href = 'dashboard.html';
+        window.location.href = '/dashboard';
         return; // Stop execution
     }
     // --- Elements ---
@@ -66,43 +66,17 @@ if (directLoginId) {
     });
 
     // --- Admin Modal Logic ---
-    openAdminBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const password = prompt('Please enter the Admin Password:');
-        if (password === 'nur138nur') {
-            adminModal.style.display = 'flex';
-            fetchParticipants(); // Load data when opening
-        } else if (password !== null) {
-            alert('Incorrect password! Access denied.');
-        }
-    });
+    
 
     // --- Login Modal Logic ---
-    openLoginBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        loginModal.style.display = 'flex';
-        if (navSection.classList.contains('active')) {
-            navSection.classList.remove('active');
-        }
-    });
+    
 
-    closeLoginBtn.addEventListener('click', () => {
-        loginModal.style.display = 'none';
-    });
+    
 
-    closeAdminBtn.addEventListener('click', () => {
-        adminModal.style.display = 'none';
-    });
+    
 
     // Close on clicking outside
-    window.addEventListener('click', (e) => {
-        if (e.target === adminModal) {
-            adminModal.style.display = 'none';
-        }
-        if (e.target === loginModal) {
-            loginModal.style.display = 'none';
-        }
-    });
+    
 
     // --- Login Form Submission Logic ---
     loginForm.addEventListener('submit', async (e) => {
@@ -122,7 +96,7 @@ if (directLoginId) {
                 // Save participant data in localStorage so the dashboard can read it
                 localStorage.setItem('participantData', JSON.stringify(data.participant));
                 // Redirect to dashboard page
-                window.location.href = 'dashboard.html';
+                window.location.href = '/dashboard';
             } else {
                 alert('Invalid Union ID. Please check and try again.');
             }
@@ -176,6 +150,20 @@ if (directLoginId) {
     });
 
     // --- Admin Fetch Logic ---
+    
+    // --- Admin Page Logic ---
+    if (window.location.pathname.includes('/admin')) {
+        const password = prompt('Please enter the Admin Password:');
+        if (password === 'nur138nur') {
+            fetchParticipants();
+        } else if (password !== null) {
+            alert('Incorrect password! Access denied.');
+            window.location.href = '/';
+        } else {
+            window.location.href = '/';
+        }
+    }
+
     const fetchParticipants = async () => {
         try {
             const response = await fetch('https://tsinghua-1.onrender.com/api/participants');
@@ -313,7 +301,7 @@ if (directLoginId) {
     });
     
     goToDashboardBtn.addEventListener('click', () => {
-        window.location.href = 'dashboard.html';
+        window.location.href = '/dashboard';
     });
 
     // --- Forgot ID Logic ---

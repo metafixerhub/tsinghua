@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Navbar</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="global-loader">
+        <div class="spinner"></div>
+        <div class="spinner-text">Loading...</div>
+    </div>
+
+    <header class="site-header">
+        <div class="header-container">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <img src="/assets/LOGO.png" alt="University Logo 1" class="logo-img" style="margin-right: 15px;">
+                <img src="/assets/completion-logo-removebg-preview (1).png" alt="University Logo 2" class="logo-img">
+            </div>
+
+            <!-- Navigation Section -->
+            <div class="nav-section">
+                <!-- Top Secondary Navbar -->
+                <div class="top-nav">
+                    <a href="#">Students</a>
+                    <a href="#">Faculty & Staff</a>
+                    <a href="#">Alumni</a>
+                    <a href="#">Visitor</a>
+                    <a href="#">Media</a>
+                    <span class="divider">|</span>
+                    <a href="#" class="lang-switch"><i class="fa-solid fa-globe"></i> 中文</a>
+                    <a href="#" class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
+
+                <!-- Main Navbar -->
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Schools & Departments</a></li>
+                        <li><a href="#">Research</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Campus</a></li>
+                        <li><a href="/admin" style="color: #ffb703;">Admin</a></li>
+                        <li><a href="/login" style="color: #4ade80;">Login</a></li>
+                        <li><a href="/" class="register-btn">Register Now</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- Mobile/Hamburger Menu Toggle -->
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <section class="hero" style="min-height: 80vh;">
+        <div class="hero-split" style="justify-content: center; align-items: center; padding-top: 50px;">
+            <div class="glass-form-box" style="width: 100%; max-width: 500px; margin: 0 auto;">
+                
+            
+            <h2>Student Login</h2>
+            <form id="loginForm">
+                <p style="color: #cbd5e1; margin-bottom: 20px;">Enter your 3-digit Union ID to access your Dashboard.</p>
+                
+                <div class="input-group">
+                    <label>Union ID (Username)</label>
+                    <input type="text" name="unionId" id="loginUnionId" required placeholder="e.g. 482">
+                </div>
+                
+                <button type="submit" class="submit-btn">Login to Dashboard</button>
+                <div style="text-align:center; margin-top:15px;">
+                    <a href="#" id="showForgotIdBtn" style="color:#3b82f6; text-decoration:none;">Forgot your ID?</a>
+                </div>
+            </form>
+            
+            <form id="forgotIdForm" style="display:none;">
+                <p style="color: #cbd5e1; margin-bottom: 15px; font-size: 14px; text-align: center;">Enter your details to find your 3-digit Union ID.</p>
+                <div class="input-group">
+                    <label for="forgotName">Full Name</label>
+                    <input type="text" id="forgotName" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="forgotEmail">Email Address</label>
+                    <input type="email" id="forgotEmail" name="email" required>
+                </div>
+                <button type="submit" class="submit-btn" style="background: #f28500;">Search My ID</button>
+                <div style="text-align:center; margin-top:15px;">
+                    <a href="#" id="showLoginBtn" style="color:#3b82f6; text-decoration:none;">Back to Login</a>
+                </div>
+                <div id="forgotIdResult" style="margin-top:15px; text-align:center; font-weight:bold; color:#22c55e;"></div>
+            </form>
+        
+            </div>
+        </div>
+    </section>
+    <script src="/assets/main.js"></script>
+</body>
+</html>
