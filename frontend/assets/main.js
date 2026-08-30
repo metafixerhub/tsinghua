@@ -151,16 +151,31 @@ if (directLoginId) {
 
     // --- Admin Fetch Logic ---
     
-    // --- Admin Page Logic ---
     if (window.location.pathname.includes('/admin')) {
-        const password = prompt('Please enter the Admin Password:');
-        if (password === 'nur1438nur') {
-            fetchParticipants();
-        } else if (password !== null) {
-            alert('Incorrect password! Access denied.');
-            window.location.href = '/';
-        } else {
-            window.location.href = '/';
+        const adminLoginBtn = document.getElementById('adminLoginBtn');
+        const adminPasswordInput = document.getElementById('adminPasswordInput');
+        const adminAuthError = document.getElementById('adminAuthError');
+        const adminAuthArea = document.getElementById('adminAuthArea');
+        const adminDataArea = document.getElementById('adminDataArea');
+
+        if (adminLoginBtn && adminPasswordInput) {
+            adminLoginBtn.addEventListener('click', () => {
+                if (adminPasswordInput.value === 'nur1438nur') {
+                    adminAuthArea.style.display = 'none';
+                    adminDataArea.style.display = 'block';
+                    adminAuthError.style.display = 'none';
+                    fetchParticipants();
+                } else {
+                    adminAuthError.style.display = 'block';
+                }
+            });
+            
+            // Allow pressing Enter in password field
+            adminPasswordInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    adminLoginBtn.click();
+                }
+            });
         }
     }
 

@@ -62,34 +62,47 @@
     <section class="hero" style="min-height: 100vh; overflow-y: auto; padding: 100px 20px;">
         <div class="glass-form-box" style="max-width: 1200px; width: 100%; margin: 0 auto;">
             
-            
-            <h2>Admin Dashboard - Participants</h2>
-            <div class="table-container">
-                <table id="participantsTable">
-                    <thead>
-                        <tr>
-                            <th>Logo</th>
-                            <th>Union ID</th>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Grade</th>
-                            <th>School</th>
-                            <th>Address</th>
-                            <th>City & State</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Country</th>
-                            <th>Field</th>
-                            <th>Project File</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Participants will be loaded here via JS -->
-                    </tbody>
-                </table>
+            <!-- Admin Auth UI -->
+            <div id="adminAuthArea" style="max-width: 400px; margin: 50px auto; text-align: center;">
+                <h2>Admin Login</h2>
+                <p style="color: #cbd5e1; margin-bottom: 20px;">Please enter the admin password to view participants.</p>
+                <div class="input-group" style="margin-bottom: 20px;">
+                    <input type="password" id="adminPasswordInput" placeholder="Admin Password" style="text-align: center;">
+                </div>
+                <button class="submit-btn" id="adminLoginBtn">Authenticate</button>
+                <p id="adminAuthError" style="color: #ef4444; margin-top: 15px; font-weight: bold; display: none;">Incorrect password! Access denied.</p>
             </div>
-            <button class="submit-btn" id="refreshAdminBtn" style="margin-top: 20px;">Refresh Data</button>
+
+            <!-- Admin Data UI (Hidden until authenticated) -->
+            <div id="adminDataArea" style="display: none;">
+                <h2>Admin Dashboard - Participants</h2>
+                <div class="table-container">
+                    <table id="participantsTable">
+                        <thead>
+                            <tr>
+                                <th>Logo</th>
+                                <th>Union ID</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Grade</th>
+                                <th>School</th>
+                                <th>Address</th>
+                                <th>City & State</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Country</th>
+                                <th>Field</th>
+                                <th>Project File</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Participants will be loaded here via JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <button class="submit-btn" id="refreshAdminBtn" style="margin-top: 20px;">Refresh Data</button>
+            </div>
         
         </div>
     </section>
