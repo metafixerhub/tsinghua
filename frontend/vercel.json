@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/my-id/login/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/login/:unionId",
+      "destination": "/index.html"
+    }
+  ]
+}

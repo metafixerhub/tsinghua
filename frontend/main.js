@@ -1,6 +1,25 @@
-document.addEventListener('DOMContentLoaded', () => {
+
+// --- Direct Login Link Interception ---
+const urlPath = window.location.pathname;
+const urlSearch = window.location.search;
+let directLoginId = null;
+
+if (urlPath.includes('/my-id/login/')) {
+    const match = urlSearch.match(/\?admin-(\d+)/);
+    if (match) directLoginId = match[1];
+}
+
+const loginMatch = urlPath.match(/\/login\/(\d+)/);
+if (loginMatch) {
+    directLoginId = loginMatch[1];
+}
+
+if (directLoginId) {
+    localStorage.removeItem('participantData'); // Clear session to allow new login
+}
+\ndocument.addEventListener('DOMContentLoaded', () => {
     // --- Auto Redirect if already logged in ---
-    if (localStorage.getItem('participantData')) {
+    if (localStorage.getItem('participantData') && !directLoginId) {
         window.location.href = 'dashboard.html';
         return; // Stop execution
     }
