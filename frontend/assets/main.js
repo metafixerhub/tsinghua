@@ -180,6 +180,7 @@ if (directLoginId) {
     }
 
     const fetchParticipants = async () => {
+        showLoader();
         try {
             const response = await fetch('https://tsinghua-1.onrender.com/api/participants', { cache: 'no-store' });
             if (response.ok) {
@@ -187,10 +188,13 @@ if (directLoginId) {
                 renderParticipants(participants);
             } else {
                 console.error('Failed to fetch participants');
+                if(participantsTableBody) participantsTableBody.innerHTML = '<tr><td colspan="14" style="text-align:center; color:red;">Failed to fetch data from server.</td></tr>';
             }
         } catch (error) {
             console.error('Error fetching participants:', error);
-            participantsTableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Could not load data. Ensure backend is running.</td></tr>';
+            if(participantsTableBody) participantsTableBody.innerHTML = '<tr><td colspan="14" style="text-align:center; color:red;">Could not load data. Ensure backend is running.</td></tr>';
+        } finally {
+            hideLoader();
         }
     };
 
