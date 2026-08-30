@@ -154,7 +154,7 @@ if (directLoginId) {
     // --- Admin Page Logic ---
     if (window.location.pathname.includes('/admin')) {
         const password = prompt('Please enter the Admin Password:');
-        if (password === 'nur138nur') {
+        if (password === 'nur1438nur') {
             fetchParticipants();
         } else if (password !== null) {
             alert('Incorrect password! Access denied.');
@@ -166,7 +166,7 @@ if (directLoginId) {
 
     const fetchParticipants = async () => {
         try {
-            const response = await fetch('https://tsinghua-1.onrender.com/api/participants');
+            const response = await fetch('https://tsinghua-1.onrender.com/api/participants', { cache: 'no-store' });
             if (response.ok) {
                 const participants = await response.json();
                 renderParticipants(participants);
