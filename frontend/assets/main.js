@@ -17,7 +17,7 @@ if (loginMatch) {
 if (directLoginId) {
     localStorage.removeItem('participantData'); // Clear session to allow new login
 }
-\ndocument.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     // --- Auto Redirect if already logged in ---
     if (localStorage.getItem('participantData') && !directLoginId) {
         window.location.href = window.BASE_URL + '/dashboard/';
