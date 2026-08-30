@@ -56,7 +56,7 @@ if (directLoginId) {
     }
 
     // --- Navigation Logic ---
-    openRegisterBtn.addEventListener('click', (e) => {
+    if (openRegisterBtn) openRegisterBtn.addEventListener('click', (e) => {
         e.preventDefault();
         document.getElementById('registerSection').scrollIntoView({ behavior: 'smooth' });
         // Close mobile nav if open
@@ -79,7 +79,7 @@ if (directLoginId) {
     
 
     // --- Login Form Submission Logic ---
-    loginForm.addEventListener('submit', async (e) => {
+    if (loginForm) loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const unionId = document.getElementById('loginUnionId').value;
         showLoader();
@@ -109,7 +109,7 @@ if (directLoginId) {
     });
 
     // --- Form Submission Logic ---
-    registrationForm.addEventListener('submit', async (e) => {
+    if (registrationForm) registrationForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         showLoader();
         const submitBtn = registrationForm.querySelector('button[type="submit"]');
@@ -305,17 +305,17 @@ if (directLoginId) {
         }
     };
 
-    refreshAdminBtn.addEventListener('click', fetchParticipants);
+    if (refreshAdminBtn) refreshAdminBtn.addEventListener('click', fetchParticipants);
     
     // --- Success Modal Close Logic ---
     const closeSuccessBtn = document.getElementById('closeSuccessBtn');
     const goToDashboardBtn = document.getElementById('goToDashboardBtn');
     
-    closeSuccessBtn.addEventListener('click', () => {
+    if (closeSuccessBtn) closeSuccessBtn.addEventListener('click', () => {
         document.getElementById('successModal').style.display = 'none';
     });
     
-    goToDashboardBtn.addEventListener('click', () => {
+    if (goToDashboardBtn) goToDashboardBtn.addEventListener('click', () => {
         window.location.href = '/dashboard';
     });
 
